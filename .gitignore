@@ -1,0 +1,8 @@
+# Ignore .vscode folder
+.vscode/
+
+# Node modules
+node_modules/
+
+# Environment variables
+.env

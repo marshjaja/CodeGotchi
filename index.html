@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link href="styles.css" rel="stylesheet" />
+    <title>CODEGOTCHI</title>
+</head>
+<style>
+    body {
+        font-family: "Press Start 2P", system-ui;
+        text-align: center;
+    }
+
+    canvas {
+        image-rendering: pixelated;
+    }
+
+    progress {
+        padding: 15px;
+    }
+
+    h1 {
+        padding: 0;
+        margin: 0;
+    }
+
+    button {
+        padding: 10px;
+    }
+
+    .pixel-button {
+        background-color: #D93D20;
+        color: #000;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 12px;
+        padding: 20px 24px;
+        border: groove #000;
+        border-radius: 5px;
+        outline: 2px solid #fff;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 4px 4px 0 #000;
+        transition: all 0.1s ease-in-out;
+    }
+
+    .pixel-button:hover {
+        background-color: #d93c20a7;
+        box-shadow: 2px 2px 0 #000;
+        transform: translate(2px, 2px);
+    }
+
+    .non-button {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    .stats {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        max-width: 300px;
+        margin: 0;
+        padding: 10px;
+    }
+
+    label {
+        margin: 0 0 0 40px;
+    }
+
+    .game-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .stat-bar {
+        width: 200px;
+        height: 20px;
+        background-color: #333;
+        border: 1px solid #000;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .stat-fill {
+        height: 100%;
+        background-color: limegreen;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    .final-message-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #fff;
+        color: #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        text-align: center;
+        font-family: "Press Start 2P", monospace;
+    }
+
+    /* ✅ Make things smaller on screens <= 768px */
+    @media only screen and (max-width: 768px) {
+        .game-container {
+            flex-direction: column;
+        }
+
+        canvas {
+            width: 250px;
+            height: 250px;
+        }
+
+        .stat-bar {
+            width: 150px;
+            height: 16px;
+        }
+
+        .stats {
+            max-width: 100%;
+            align-items: center;
+        }
+
+        .button-container button {
+            font-size: 10px;
+            padding: 8px 12px;
+        }
+    }
+</style>
+
+<body>
+    <h1>CodeGotchi</h1>
+    <p id="congratsMessage" style="font-weight: bold; margin-top: 20px;"></p>
+
+    <p><span id="displayLevel"></span></p>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="768" height="768"></canvas>
+        <div id="stats-container" class="stats">
+            <!-- ENERGY -->
+            <div class="stat-group">
+                <p>Energy: <span id="energy">100</span>/100</p>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="energyFill"></div>
+                </div>
+            </div>
+
+            <!-- KNOWLEDGE -->
+            <div class="stat-group">
+                <p>Knowledge: <span id="knowledge">0</span>/100</p>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="knowledgeFill"></div>
+                </div>
+            </div>
+
+            <!-- MOTIVATION -->
+            <div class="stat-group">
+                <p>Motivation: <span id="motivation">100</span>/100</p>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="motivationFill"></div>
+                </div>
+            </div>
+
+            <!-- STRESS -->
+            <div class="stat-group">
+                <p>Stress: <span id="stress">0</span>/100</p>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="stressFill"></div>
+                </div>
+            </div>
+            <div class="button-container">
+                <!-- <button onclick=code()>Code</button>
+            <button onclick=study()>Study</button>
+            <button onclick=debug()>Debug</button>
+            <button onclick=sleep()>Sleep</button>
+            <button onclick=takeBreak()>Take a break!</button>
+            <button onclick=freeTimeActivity()>Free time</button> -->
+                <button class="dev-activity" id="code">Code</button>
+                <button class="dev-activity" id="study" class="non-button">
+                    Study
+                </button>
+
+                <!-- <button id="study">Study </button> -->
+                <button class="dev-activity" id="debug">Debug</button>
+                <button class="dev-activity" id="sleep">Sleep</button>
+                <button class="dev-activity" id="break">Take a break!</button>
+                <button class="dev-activity" id="freeTime">Free time</button>
+            </div>
+        </div>
+
+
+
+        <!-- <input type="text" id="userInput" placeholder="Enter user name">
+        <button id="submitBtn" type="submit">Submit</button>
+        <button id="renameBtn" type="submit">Rename</button> -->
+
+
+    </div>
+
+
+    <div id="finalScreen" style="display: none;" class="final-message-screen">
+        <h1>🎓 Your Dev has reached their final form: Head of Software!</h1>
+        <img src="./images/win-screen.png" alt="Final Form" />
+    </div>
+
+    <script type="module" src="gameLogic.js"></script>
+    <script type="module" src="spriteAnimation.js"></script>
+</body>
+
+</html>
