@@ -114,7 +114,6 @@
 
     .dev-activity:focus {
         outline: 2px solid #2B2B2B;
-        /* outline-offset: 2px; */
     }
 
     /* .dev-activity {
@@ -157,13 +156,6 @@
         border-radius: 4px;
         overflow: hidden;
     }
-
-    /* .stat-fill {
-        height: 100%;
-        background-color: limegreen;
-        width: 0%;
-        transition: width 0.3s ease;
-    } */
 
     .stat-fill {
         height: 100%;
@@ -228,6 +220,10 @@
         transform: translate(2px, 2px);
     } */
 
+    #resetButton {
+        margin: 50px;
+    }
+
     /* BREAKPOINT FOR SMALLER SCREENS  */
     @media only screen and (max-width: 768px) {
         .game-container {
@@ -257,9 +253,11 @@
 </style>
 
 <body>
+
+    <button type="button" class="nes-btn is-warning">Take a Break</button>
+
     <h1>CodeGotchi</h1>
     <p id="congratsMessage" style="font-weight: bold; margin-top: 20px;"></p>
-
     <p><span id="displayLevel"></span></p>
     <div class="game-container">
         <canvas id="gameCanvas" width="768" height="768"></canvas>
@@ -296,19 +294,10 @@
                 </div>
             </div>
             <div class="button-container">
-                <!-- <button onclick=code()>Code</button>
-            <button onclick=study()>Study</button>
-            <button onclick=debug()>Debug</button>
-            <button onclick=sleep()>Sleep</button>
-            <button onclick=takeBreak()>Take a break!</button>
-            <button onclick=freeTimeActivity()>Free time</button> -->
                 <button class="dev-activity" id="code">Code</button>
-                <!-- <button class="pixel-button" id="code">Code</button> -->
                 <button class="dev-activity" id="study">
                     Study
                 </button>
-
-                <!-- <button id="study">Study </button> -->
                 <button class="dev-activity" id="debug">Debug</button>
                 <button class="dev-activity" id="sleep">Sleep</button>
                 <button class="dev-activity" id="break">Take a break!</button>
@@ -316,19 +305,21 @@
             </div>
         </div>
 
-
-
         <!-- <input type="text" id="userInput" placeholder="Enter user name">
         <button id="submitBtn" type="submit">Submit</button>
         <button id="renameBtn" type="submit">Rename</button> -->
-
-
     </div>
 
 
     <div id="finalScreen" style="display: none;" class="final-message-screen">
-        <h1>🎓 Your Dev has reached their final form: Head of Software!</h1>
+        <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
         <img src="./images/win-screen.png" alt="Final Form" />
+        <button id="resetButton" class="dev-activity">Play Again</button>
+    </div>
+    <div id="gameOverScreen" class="final-message-screen">
+        <h1 id="gameOverMessage">🎓 game over</h1>
+        <img src="./game-over-2.gif" alt="Final Form" />
+        <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
     </div>
 
     <script type="module" src="gameLogic.js"></script>
