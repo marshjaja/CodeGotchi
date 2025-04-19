@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link href="styles.css" rel="stylesheet" />
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
     <title>CODEGOTCHI</title>
 </head>
 <style>
@@ -31,26 +38,6 @@
         padding: 10px;
     }
 
-    .pixel-button {
-        background-color: #D93D20;
-        color: #000;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 12px;
-        padding: 20px 24px;
-        border: groove #000;
-        border-radius: 5px;
-        outline: 2px solid #fff;
-        cursor: pointer;
-        text-transform: uppercase;
-        box-shadow: 4px 4px 0 #000;
-        transition: all 0.1s ease-in-out;
-    }
-
-    .pixel-button:hover {
-        background-color: #d93c20a7;
-        box-shadow: 2px 2px 0 #000;
-        transform: translate(2px, 2px);
-    }
 
     .non-button {
         background: transparent;
@@ -70,6 +57,11 @@
         padding: 10px;
     }
 
+    .stat-group {
+        text-wrap: nowrap;
+
+    }
+
     label {
         margin: 0 0 0 40px;
     }
@@ -84,28 +76,115 @@
     }
 
     .button-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
         gap: 10px;
+        justify-content: center;
         margin-top: 20px;
     }
+
+
+
+    .dev-activity {
+        background-color: #FFE055;
+        border: 2px dotted black;
+        border-radius: 6px;
+        box-shadow: 4px 4px 0 #000;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 12px;
+        color: #000;
+        padding: 12px 20px;
+        transition:
+            transform 0.1s ease-in-out,
+            filter 0.1s ease-in-out,
+            box-shadow 0.1s ease-in-out;
+        image-rendering: pixelated;
+    }
+
+    .dev-activity:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+        box-shadow: 2px 2px 0 #000;
+    }
+
+    .dev-activity:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #000;
+    }
+
+    .dev-activity:focus {
+        outline: 2px solid #2B2B2B;
+        /* outline-offset: 2px; */
+    }
+
+    /* .dev-activity {
+        font-family: 'Press Start 2P', monospace;
+        font-size: 16px;
+        background-color: #FFE055;
+        color: #2B2B2B;
+        padding: 12px 24px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        box-shadow:
+            0 0 0 2px #000,
+            4px 4px 0 0 #000;
+        image-rendering: pixelated;
+    }
+
+    .dev-activity:active {
+
+        transform: translate(2px, 2px);
+        box-shadow:
+            0 0 0 2px #000,
+            2px 2px 0 0 #000;
+    }
+
+    .dev-activity:focus {
+        outline: 2px dotted #2B2B2B;
+        outline-offset: 2px;
+    } */
+
 
     .stat-bar {
         width: 200px;
         height: 20px;
-        background-color: #333;
-        border: 1px solid #000;
+        background-color: #d9d8d8;
+        border: 2px dotted #000;
         border-radius: 4px;
         overflow: hidden;
     }
 
-    .stat-fill {
+    /* .stat-fill {
         height: 100%;
         background-color: limegreen;
         width: 0%;
         transition: width 0.3s ease;
+    } */
+
+    .stat-fill {
+        height: 100%;
+        width: 0%;
+        transition: width 0.3s ease;
     }
+
+
+    .stat-fill.low {
+        background-color: crimson;
+    }
+
+    .stat-fill.medium {
+        background-color: orange;
+    }
+
+    .stat-fill.high {
+        background-color: limegreen;
+    }
+
+
 
     .final-message-screen {
         position: fixed;
@@ -124,7 +203,32 @@
         font-family: "Press Start 2P", monospace;
     }
 
-    /* ✅ Make things smaller on screens <= 768px */
+    /* .pixel-button {
+        font-family: 'Press Start 2P', system-ui;
+        font-size: 16px;
+        background-color: #FFE055;
+        color: #000;
+        padding: 16px 32px;
+        border: 4px solid #000;
+        border-radius: 4px;
+        box-shadow: 4px 4px 0 #000;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.1s ease-in-out;
+        image-rendering: pixelated;
+    }
+
+    .pixel-button:hover {
+        background-color: #f5d844;
+    }
+
+    .pixel-button:active {
+        box-shadow: 2px 2px 0 #000;
+        transform: translate(2px, 2px);
+    } */
+
+    /* BREAKPOINT FOR SMALLER SCREENS  */
     @media only screen and (max-width: 768px) {
         .game-container {
             flex-direction: column;
@@ -199,7 +303,8 @@
             <button onclick=takeBreak()>Take a break!</button>
             <button onclick=freeTimeActivity()>Free time</button> -->
                 <button class="dev-activity" id="code">Code</button>
-                <button class="dev-activity" id="study" class="non-button">
+                <!-- <button class="pixel-button" id="code">Code</button> -->
+                <button class="dev-activity" id="study">
                     Study
                 </button>
 

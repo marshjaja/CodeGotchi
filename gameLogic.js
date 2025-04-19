@@ -90,14 +90,21 @@ function updateStats() {
 	document.getElementById("motivation").value = gameState.motivation;
 	document.getElementById("stress").value = gameState.stress;
 
-	document.getElementById("energyFill").style.width = `${gameState.energy}%`;
-	document.getElementById(
-		"knowledgeFill"
-	).style.width = `${gameState.knowledge}%`;
-	document.getElementById(
-		"motivationFill"
-	).style.width = `${gameState.motivation}%`;
-	document.getElementById("stressFill").style.width = `${gameState.stress}%`;
+	const energyFill = document.getElementById("energyFill");
+	energyFill.style.width = `${gameState.energy}%`;
+	updateBarColor(energyFill, gameState.energy);
+
+	const knowledgeFill = document.getElementById("knowledgeFill");
+	knowledgeFill.style.width = `${gameState.knowledge}%`;
+	updateBarColor(knowledgeFill, gameState.knowledge);
+
+	const motivationFill = document.getElementById("motivationFill");
+	motivationFill.style.width = `${gameState.motivation}%`;
+	updateBarColor(motivationFill, gameState.motivation);
+
+	const stressFill = document.getElementById("stressFill");
+	stressFill.style.width = `${gameState.stress}%`;
+	updateBarColor(stressFill, gameState.stress);
 
 	document.getElementById("energy").textContent = Math.min(
 		gameState.energy,
@@ -133,7 +140,17 @@ function updateStats() {
 		gameState.knowledge = 0;
 	}
 }
+function updateBarColor(fillElement, value) {
+	fillElement.classList.remove("low", "medium", "high");
 
+	if (value >= 70) {
+		fillElement.classList.add("high");
+	} else if (value >= 40) {
+		fillElement.classList.add("medium");
+	} else {
+		fillElement.classList.add("low");
+	}
+}
 function levelUp() {
 	//LEVEL PLUS 1, CAN'T GO OVER HEAD OF SOFTWARE
 	if (level.knowledgeLevel < 4) {
