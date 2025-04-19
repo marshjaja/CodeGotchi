@@ -195,6 +195,12 @@
         font-family: "Press Start 2P", monospace;
     }
 
+    .winner-image {
+        border-radius: 20px;
+        width: 750px;
+
+    }
+
     /* .pixel-button {
         font-family: 'Press Start 2P', system-ui;
         font-size: 16px;
@@ -302,6 +308,8 @@
                 <button class="dev-activity" id="sleep">Sleep</button>
                 <button class="dev-activity" id="break">Take a break!</button>
                 <button class="dev-activity" id="freeTime">Free time</button>
+                <button id="toggleMusic" class="dev-activity">🎵 Toggle Music</button>
+
             </div>
         </div>
 
@@ -312,13 +320,13 @@
 
 
     <div id="finalScreen" style="display: none;" class="final-message-screen">
+        <img class="winner-image" src="./winner-image-1.gif" alt="Final Form" />
         <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
-        <img src="./images/win-screen.png" alt="Final Form" />
         <button id="resetButton" class="dev-activity">Play Again</button>
     </div>
     <div id="gameOverScreen" class="final-message-screen">
-        <h1 id="gameOverMessage">🎓 game over</h1>
-        <img src="./game-over-2.gif" alt="Final Form" />
+        <h1 id="gameOverMessage">🛑 Game Over</h1>
+        <img class="winner-image" src="/loser-image-1.gif" alt="Game Over" />
         <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
     </div>
 
