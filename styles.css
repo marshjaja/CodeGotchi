@@ -14,8 +14,12 @@ canvas {
 	image-rendering: pixelated;
 }
 
-button {
+/* button {
 	padding: 10px;
+} */
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
 }
 
 .game-title {
@@ -34,10 +38,21 @@ button {
 }
 
 .left-panel {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+#devMessage {
+	position: absolute;
+	top: 275px;
+	left: 30%;
+	z-index: 10;
+	max-width: 220px;
+	display: none;
+	pointer-events: none;
 }
 /* .left-panel h1 {
 	font-size: 40px;
@@ -232,6 +247,25 @@ button {
 .music-toggle:hover {
 	transform: scale(1.2);
 	opacity: 0.5;
+}
+.toast {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #333;
+	color: #fff;
+	padding: 12px 20px;
+	border-radius: 6px;
+	font-size: 14px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.4s ease;
+	z-index: 9999;
+}
+
+.toast.show {
+	opacity: 1;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

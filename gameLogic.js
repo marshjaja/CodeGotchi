@@ -5,7 +5,7 @@ const gameOverScreen = document.getElementById("gameOverScreen");
 const gameOverMessage = document.getElementById("gameOverMessage");
 const tryAgainButton = document.getElementById("tryAgainButton");
 const congratsMessage = document.getElementById("congratsMessage");
-const actionButtons = document.querySelectorAll(".action-button");
+const actionButtons = document.querySelectorAll(".dev-activity");
 
 //APP SOUNDS
 const backgroundMusic = new Audio("./Cuddle Clouds.wav");
@@ -154,15 +154,18 @@ function code() {
 			gameState.knowledge += 2;
 		}
 
-		if (Math.random() < 0.1) {
-			console.log("You encountered a bug!");
-			gameState.stress += 15;
+		if (Math.random() < 0.2) {
+			showDevMessage("Oh no... Deployed to prod on a Friday at 5PM... 😬");
+			gameState.stress += 35;
 		}
 
 		updateStats();
 
-		if (gameState.energy < 30) {
-			console.log("Your dev is getting tired");
+		if (gameState.energy <= 30) {
+			showDevMessage("⚠️ I am getting tired!");
+		}
+		if (gameState.energy <= 10) {
+			showDevMessage("⚠️ I Think I am about to pass out! ;(");
 		}
 
 		if (gameState.energy <= 0) {
@@ -184,8 +187,8 @@ function study() {
 	gameState.motivation += 10;
 
 	if (Math.random() < 0.2) {
-		console.log(
-			"You encountered a confusing concept you could not quite grasp!"
+		showDevMessage(
+			"I’ve encountered a confusing concept… 404: Understanding not found."
 		);
 		gameState.stress += 10;
 		gameState.motivation -= 30;
@@ -205,10 +208,10 @@ function debug() {
 	gameState.stress += 5;
 
 	if (Math.random() < 0.2) {
-		console.log("You fixed the bug!");
+		showDevMessage("Bug? What bug? I’ve got this! 😎");
 		gameState.motivation += 10;
 	} else {
-		console.log("Your code has crashed!");
+		showDevMessage("Who broke the build??! Oh wait... it was me. 😭");
 		gameState.motivation -= 20;
 		gameState.stress += 10;
 	}
@@ -216,18 +219,49 @@ function debug() {
 	updateStats();
 }
 
+// function takeBreak() {
+// 	gameStarted = true;
+// 	if (level.knowledgeLevel === 4) return;
+// 	btnSound.play();
+
+// 	if (gameState.energy < 100) gameState.energy += 20;
+// 	if (gameState.stress > 0) gameState.stress -= 2;
+// 	updateStats();
+
+// 	if (gameState.energy >= 70 && gameState.stress <= 30) {
+// 		showDevMessage("Break over! Your dev is feeling rested.");
+// 	}
+// }
+
 function takeBreak() {
-	gameStarted = true;
-	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
+	actionButtons.forEach((btn) => {
+		btn.disabled = true;
+	});
 
-	if (gameState.energy < 100) gameState.energy += 20;
-	if (gameState.stress > 0) gameState.stress -= 2;
-	updateStats();
+	showDevMessage(
+		"Hold on... You can’t rush brilliance...\nTaking five... Be right back!"
+	);
 
-	if (gameState.energy >= 70 && gameState.stress <= 30) {
-		console.log("Break over! Your dev is feeling rested.");
-	}
+	let breakInterval = setInterval(() => {
+		if (gameState.energy < 100) {
+			gameState.energy += 20;
+		}
+		if (gameState.stress > 0) {
+			gameState.stress -= 10;
+		}
+		updateStats();
+
+		if (gameState.energy >= 70 || gameState.stress <= 40) {
+			// if (gameState.energy >= 70 && gameState.stress <= 40) {
+			console.log(gameState.energy);
+			actionButtons.forEach((btn) => {
+				btn.disabled = false;
+			});
+			showDevMessage("Break over! I'm feeling rested and full of ideas!");
+
+			clearInterval(breakInterval);
+		}
+	}, 2000);
 }
 
 function sleep() {
@@ -237,6 +271,7 @@ function sleep() {
 
 	gameState.energy = 100;
 	gameState.stress -= 80;
+	showDevMessage("Zzz...Taking a nap... don't deploy anything without me!");
 	updateStats();
 }
 
@@ -250,26 +285,34 @@ function freeTimeActivity() {
 
 	if (activity === "Networking") {
 		gameState.knowledge += 50;
-		console.log("You are at a networking event.");
+		showDevMessage("At a networking event, levelling up my connections!");
 	} else if (activity === "Exercise") {
 		gameState.stress -= 10;
 		gameState.energy += 50;
-		console.log("You're doing some yoga. Recharging your body and mind.");
+		showDevMessage("Doing some Yoga. Recharging my body and mind.");
 	} else {
 		gameState.stress += 10;
 		gameState.motivation += 50;
-		console.log(
-			"You are working on your side project.Your motivation is peaking"
-		);
+		showDevMessage("Tinkering on my side hustles, motivation: 100%! 💡");
 	}
 
 	updateStats();
 }
 
+function showDevMessage(text) {
+	const balloonText = document.getElementById("devMessage");
+	balloonText.querySelector("p").textContent = text;
+	balloonText.style.display = "block";
+
+	setTimeout(() => {
+		balloonText.style.display = "none";
+	}, 3500);
+}
+
 function showFinalScreen() {
-	actionButtons.forEach((btn) => {
-		btn.disabled = true;
-	});
+	// actionButtons.forEach((btn) => {
+	// 	btn.disabled = true;
+	// });
 	winSound.play();
 	backgroundMusic.pause();
 	congratsMessage.style.display = "block";
@@ -279,9 +322,9 @@ function showFinalScreen() {
 }
 
 function showGameOverScreen() {
-	actionButtons.forEach((btn) => {
-		btn.disabled = true;
-	});
+	// actionButtons.forEach((btn) => {
+	// 	btn.disabled = true;
+	// });
 	gameOverMessage.style.display = "block";
 	finalScreen.style.display = "none";
 	gameOverScreen.style.display = "flex";
@@ -294,6 +337,8 @@ function resetGame() {
 	gameState.motivation = 100;
 	gameState.stress = 0;
 	level.knowledgeLevel = 0;
+	gameOverBackground.pause();
+	gameOverSound.pause();
 
 	localStorage.setItem("gameState", JSON.stringify(gameState));
 	localStorage.setItem("levelUp", JSON.stringify(level));
