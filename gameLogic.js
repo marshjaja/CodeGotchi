@@ -17,6 +17,8 @@ let winSound = new Audio("./Fanfare_1.wav");
 const btnSound = new Audio("./tamagotchi-btn.wav");
 const levelUpSound = new Audio("./tama-powerup.wav");
 levelUpSound.volume = 0.3;
+gameOverSound.volume = 0.3;
+gameOverBackground.volume = 0.3;
 
 const developerLevel = {
 	0: "Beginner",
