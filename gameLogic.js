@@ -1,3 +1,11 @@
+import {
+	backgroundMusic,
+	gameOverSound,
+	gameOverBackground,
+	winSound,
+	btnSound,
+	levelUpSound,
+} from "./audio.js";
 const gameContainer = document.querySelector(".game-container");
 const finalScreen = document.getElementById("finalScreen");
 const resetButton = document.getElementById("resetButton");
@@ -6,19 +14,6 @@ const gameOverMessage = document.getElementById("gameOverMessage");
 const tryAgainButton = document.getElementById("tryAgainButton");
 const congratsMessage = document.getElementById("congratsMessage");
 const actionButtons = document.querySelectorAll(".dev-activity");
-
-//APP SOUNDS
-const backgroundMusic = new Audio("./Cuddle Clouds.wav");
-backgroundMusic.loop = true;
-backgroundMusic.volume = 1.0;
-let gameOverSound = new Audio("./gameOver.mp3");
-let gameOverBackground = new Audio("./gameboy-sad.wav");
-let winSound = new Audio("./Fanfare_1.wav");
-const btnSound = new Audio("./tamagotchi-btn.wav");
-const levelUpSound = new Audio("./tama-powerup.wav");
-levelUpSound.volume = 0.3;
-gameOverSound.volume = 0.3;
-gameOverBackground.volume = 0.3;
 
 const developerLevel = {
 	0: "Beginner",
