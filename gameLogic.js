@@ -3,9 +3,16 @@ import {
 	gameOverSound,
 	gameOverBackground,
 	winSound,
-	btnSound,
 	levelUpSound,
 } from "./audio.js";
+import {
+	code,
+	study,
+	debug,
+	takeBreak,
+	sleep,
+	freeTimeActivity,
+} from "./gameActivities.js";
 const gameContainer = document.querySelector(".game-container");
 const finalScreen = document.getElementById("finalScreen");
 const resetButton = document.getElementById("resetButton");
@@ -43,7 +50,7 @@ const knowledgeBar = document.getElementById("knowledgeFill");
 const motivationBar = document.getElementById("motivationFill");
 const stressBar = document.getElementById("stressFill");
 
-let gameStarted = false; // Add this line  to track if the game has started.
+// let gameStarted = false; // Add this line  to track if the game has started.
 
 updateStats();
 
@@ -98,7 +105,7 @@ function updateStats() {
 
 	localStorage.setItem("gameState", JSON.stringify(gameState));
 
-	if (gameState.energy <= 0 && gameStarted) {
+	if (gameState.energy <= 0) {
 		// Check if gameStarted is true
 		gameOverSound.play();
 		gameOverBackground.play();
@@ -123,6 +130,14 @@ function updateBarColor(statBarColour, value) {
 	}
 }
 
+// THIS FUNCTION HANDLES THE DEVELOPER LEVELING UP.
+// IF THE CURRENT KNOWLEDGE LEVEL IS LESS THAN THE MAXIMUM (4), INCREMENTS THE LEVEL BY ONE.
+// INCREMENTS THE KNOWLEDGE LEVEL AND UPDATES IT IN LOCAL STORAGE.
+// DISPLAYS THE DEV'S TITLE BASED ON THE (NEW) LEVEL.
+// UPDATES THE DISPLAYED LEVEL AND TITLE IN THE UI.
+// PLAYS A LEVEL-UP SOUND FOR EVERY NEW LEVEL REACH.
+// CHECKS IF THE DEVELOPER HAS REACHED THE MAXIMUM LEVEL (4) AND, IF SO, TRIGGERS THE FINAL SCREEN.
+
 function levelUp() {
 	if (level.knowledgeLevel < 4) {
 		level.knowledgeLevel += 1;
@@ -138,162 +153,6 @@ function levelUp() {
 	if (level.knowledgeLevel === 4) {
 		showFinalScreen();
 	}
-}
-
-function code() {
-	gameStarted = true; // Set gameStarted to true when any action is performed
-	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
-
-	if (gameState.energy > 0) {
-		gameState.energy -= 10;
-		if (level.knowledgeLevel < 4) {
-			gameState.knowledge += 2;
-		}
-
-		if (Math.random() < 0.2) {
-			showDevMessage("Oh no... Deployed to prod on a Friday at 5PM... 😬");
-			gameState.stress += 35;
-		}
-
-		updateStats();
-
-		if (gameState.energy <= 30) {
-			showDevMessage("⚠️ I am getting tired!");
-		}
-		if (gameState.energy <= 10) {
-			showDevMessage("⚠️ I Think I am about to pass out! ;(");
-		}
-
-		if (gameState.energy <= 0) {
-			gameState.energy = 0;
-			gameState.motivation -= 100;
-			gameState.stress += 100;
-			updateStats();
-			showGameOverScreen();
-		}
-	}
-}
-
-function study() {
-	gameStarted = true;
-	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
-
-	gameState.energy -= 5;
-	gameState.motivation += 10;
-
-	if (Math.random() < 0.2) {
-		showDevMessage(
-			"I’ve encountered a confusing concept… 404: Understanding not found."
-		);
-		gameState.stress += 10;
-		gameState.motivation -= 30;
-	} else {
-		gameState.knowledge += 7;
-	}
-
-	updateStats();
-}
-
-function debug() {
-	gameStarted = true;
-	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
-
-	gameState.energy -= 5;
-	gameState.stress += 5;
-
-	if (Math.random() < 0.2) {
-		showDevMessage("Bug? What bug? I’ve got this! 😎");
-		gameState.motivation += 10;
-	} else {
-		showDevMessage("Who broke the build??! Oh wait... it was me. 😭");
-		gameState.motivation -= 20;
-		gameState.stress += 10;
-	}
-
-	updateStats();
-}
-
-// function takeBreak() {
-// 	gameStarted = true;
-// 	if (level.knowledgeLevel === 4) return;
-// 	btnSound.play();
-
-// 	if (gameState.energy < 100) gameState.energy += 20;
-// 	if (gameState.stress > 0) gameState.stress -= 2;
-// 	updateStats();
-
-// 	if (gameState.energy >= 70 && gameState.stress <= 30) {
-// 		showDevMessage("Break over! Your dev is feeling rested.");
-// 	}
-// }
-
-function takeBreak() {
-	actionButtons.forEach((btn) => {
-		btn.disabled = true;
-	});
-
-	showDevMessage(
-		"Hold on... You can’t rush brilliance...\nTaking five... Be right back!"
-	);
-
-	let breakInterval = setInterval(() => {
-		if (gameState.energy < 100) {
-			gameState.energy += 20;
-		}
-		if (gameState.stress > 0) {
-			gameState.stress -= 10;
-		}
-		updateStats();
-
-		if (gameState.energy >= 70 || gameState.stress <= 40) {
-			// if (gameState.energy >= 70 && gameState.stress <= 40) {
-			console.log(gameState.energy);
-			actionButtons.forEach((btn) => {
-				btn.disabled = false;
-			});
-			showDevMessage("Break over! I'm feeling rested and full of ideas!");
-
-			clearInterval(breakInterval);
-		}
-	}, 2000);
-}
-
-function sleep() {
-	gameStarted = true;
-	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
-
-	gameState.energy = 100;
-	gameState.stress -= 80;
-	showDevMessage("Zzz...Taking a nap... don't deploy anything without me!");
-	updateStats();
-}
-
-function freeTimeActivity() {
-	gameStarted = true;
-	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
-
-	const activities = ["Networking", "Exercise", "Side project"];
-	const activity = activities[Math.floor(Math.random() * activities.length)];
-
-	if (activity === "Networking") {
-		gameState.knowledge += 50;
-		showDevMessage("At a networking event, levelling up my connections!");
-	} else if (activity === "Exercise") {
-		gameState.stress -= 10;
-		gameState.energy += 50;
-		showDevMessage("Doing some Yoga. Recharging my body and mind.");
-	} else {
-		gameState.stress += 10;
-		gameState.motivation += 50;
-		showDevMessage("Tinkering on my side hustles, motivation: 100%! 💡");
-	}
-
-	updateStats();
 }
 
 function showDevMessage(text) {
@@ -346,7 +205,7 @@ function resetGame() {
 	finalScreen.style.display = "none";
 	gameOverScreen.style.display = "none";
 	gameContainer.style.display = "flex";
-	gameStarted = false; // Reset  when the game is reset
+	// gameStarted = false;
 	actionButtons.forEach((btn) => {
 		btn.disabled = false;
 	});
@@ -378,4 +237,4 @@ document.getElementById("freeTime").addEventListener("click", freeTimeActivity);
 resetButton.addEventListener("click", resetGame);
 tryAgainButton.addEventListener("click", resetGame);
 
-export { gameState };
+export { gameState, level, showDevMessage, updateStats, actionButtons };
