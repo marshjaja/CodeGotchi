@@ -876,7 +876,12 @@ const congratsMessage = document.getElementById("congratsMessage");
 const actionButtons = document.querySelectorAll(".action-button");
 
 //APP SOUNDS
+const backgroundMusic = new Audio("./Cuddle Clouds.wav");
+backgroundMusic.loop = true;
+backgroundMusic.volume = 1.0;
 let gameOverSound = new Audio("./gameOver.mp3");
+let gameOverBackground = new Audio("./gameboy-sad.wav");
+let winSound = new Audio("./Fanfare_1.wav");
 const btnSound = new Audio("./tamagotchi-btn.wav");
 const levelUpSound = new Audio("./tama-powerup.wav");
 levelUpSound.volume = 0.3;
@@ -967,6 +972,8 @@ function updateStats() {
 	if (gameState.energy <= 0 && gameStarted) {
 		// Check if gameStarted is true
 		gameOverSound.play();
+		gameOverBackground.play();
+		backgroundMusic.pause();
 		showGameOverScreen();
 	}
 	if (gameState.knowledge >= 100) {
@@ -1131,6 +1138,8 @@ function showFinalScreen() {
 	actionButtons.forEach((btn) => {
 		btn.disabled = true;
 	});
+	winSound.play();
+	backgroundMusic.pause();
 	congratsMessage.style.display = "block";
 	finalScreen.style.display = "flex";
 	gameOverScreen.style.display = "none";
@@ -1170,26 +1179,20 @@ function resetGame() {
 	updateStats();
 }
 
-const backgroundMusic = new Audio("./Cuddle Clouds.wav");
+// Attach music start to a user click
+const toggleBtn = document.getElementById("toggleMusic");
+const musicIcon = toggleBtn.querySelector("i");
 
-// Loop it forever
-backgroundMusic.loop = true;
-
-// Optional: adjust volume (0.0 to 1.0)
-backgroundMusic.volume = 1.0;
-
-// Start it when the page loads or the game starts
-window.addEventListener("DOMContentLoaded", () => {
-	backgroundMusic.play().catch((err) => {
-		console.warn("Autoplay was blocked until user interaction:", err);
-	});
-	document.getElementById("toggleMusic").addEventListener("click", () => {
-		if (backgroundMusic.paused) {
-			backgroundMusic.play();
-		} else {
-			backgroundMusic.pause();
-		}
-	});
+toggleBtn.addEventListener("click", () => {
+	if (backgroundMusic.paused) {
+		backgroundMusic.play();
+		musicIcon.classList.remove("fa-volume-mute");
+		musicIcon.classList.add("fa-volume-up");
+	} else {
+		backgroundMusic.pause();
+		musicIcon.classList.remove("fa-volume-up");
+		musicIcon.classList.add("fa-volume-mute");
+	}
 });
 
 document.getElementById("code").addEventListener("click", code);

@@ -1,336 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link href="styles.css" rel="stylesheet" />
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-
-    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-
-    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-
-    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
     <title>CODEGOTCHI</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+
 </head>
-<style>
-    body {
-        font-family: "Press Start 2P", system-ui;
-        text-align: center;
-    }
-
-    canvas {
-        image-rendering: pixelated;
-    }
-
-    progress {
-        padding: 15px;
-    }
-
-    h1 {
-        padding: 0;
-        margin: 0;
-    }
-
-    button {
-        padding: 10px;
-    }
-
-
-    .non-button {
-        background: transparent;
-        border: none;
-        padding: 0;
-        margin: 0;
-        cursor: pointer;
-    }
-
-    .stats {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        max-width: 300px;
-        margin: 0;
-        padding: 10px;
-    }
-
-    .stat-group {
-        text-wrap: nowrap;
-
-    }
-
-    label {
-        margin: 0 0 0 40px;
-    }
-
-    .game-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .button-container {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 10px;
-        justify-content: center;
-        margin-top: 20px;
-    }
-
-
-
-    .dev-activity {
-        background-color: #FFE055;
-        border: 2px dotted black;
-        border-radius: 6px;
-        box-shadow: 4px 4px 0 #000;
-        font-family: 'Press Start 2P', monospace;
-        font-size: 12px;
-        color: #000;
-        padding: 12px 20px;
-        transition:
-            transform 0.1s ease-in-out,
-            filter 0.1s ease-in-out,
-            box-shadow 0.1s ease-in-out;
-        image-rendering: pixelated;
-    }
-
-    .dev-activity:hover {
-        transform: scale(1.05);
-        filter: brightness(1.1);
-        box-shadow: 2px 2px 0 #000;
-    }
-
-    .dev-activity:active {
-        transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0 #000;
-    }
-
-    .dev-activity:focus {
-        outline: 2px solid #2B2B2B;
-    }
-
-    /* .dev-activity {
-        font-family: 'Press Start 2P', monospace;
-        font-size: 16px;
-        background-color: #FFE055;
-        color: #2B2B2B;
-        padding: 12px 24px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        position: relative;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        box-shadow:
-            0 0 0 2px #000,
-            4px 4px 0 0 #000;
-        image-rendering: pixelated;
-    }
-
-    .dev-activity:active {
-
-        transform: translate(2px, 2px);
-        box-shadow:
-            0 0 0 2px #000,
-            2px 2px 0 0 #000;
-    }
-
-    .dev-activity:focus {
-        outline: 2px dotted #2B2B2B;
-        outline-offset: 2px;
-    } */
-
-
-    .stat-bar {
-        width: 200px;
-        height: 20px;
-        background-color: #d9d8d8;
-        border: 2px dotted #000;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .stat-fill {
-        height: 100%;
-        width: 0%;
-        transition: width 0.3s ease;
-    }
-
-
-    .stat-fill.low {
-        background-color: crimson;
-    }
-
-    .stat-fill.medium {
-        background-color: orange;
-    }
-
-    .stat-fill.high {
-        background-color: limegreen;
-    }
-
-
-
-    .final-message-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: #fff;
-        color: #000;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        text-align: center;
-        font-family: "Press Start 2P", monospace;
-    }
-
-    .winner-image {
-        border-radius: 20px;
-        width: 750px;
-
-    }
-
-    /* .pixel-button {
-        font-family: 'Press Start 2P', system-ui;
-        font-size: 16px;
-        background-color: #FFE055;
-        color: #000;
-        padding: 16px 32px;
-        border: 4px solid #000;
-        border-radius: 4px;
-        box-shadow: 4px 4px 0 #000;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        transition: all 0.1s ease-in-out;
-        image-rendering: pixelated;
-    }
-
-    .pixel-button:hover {
-        background-color: #f5d844;
-    }
-
-    .pixel-button:active {
-        box-shadow: 2px 2px 0 #000;
-        transform: translate(2px, 2px);
-    } */
-
-    #resetButton {
-        margin: 50px;
-    }
-
-    /* BREAKPOINT FOR SMALLER SCREENS  */
-    @media only screen and (max-width: 768px) {
-        .game-container {
-            flex-direction: column;
-        }
-
-        canvas {
-            width: 250px;
-            height: 250px;
-        }
-
-        .stat-bar {
-            width: 150px;
-            height: 16px;
-        }
-
-        .stats {
-            max-width: 100%;
-            align-items: center;
-        }
-
-        .button-container button {
-            font-size: 10px;
-            padding: 8px 12px;
-        }
-    }
-</style>
 
 <body>
 
-    <button type="button" class="nes-btn is-warning">Take a Break</button>
 
-    <h1>CodeGotchi</h1>
-    <p id="congratsMessage" style="font-weight: bold; margin-top: 20px;"></p>
-    <p><span id="displayLevel"></span></p>
-    <div class="game-container">
-        <canvas id="gameCanvas" width="768" height="768"></canvas>
-        <div id="stats-container" class="stats">
-            <!-- ENERGY -->
-            <div class="stat-group">
-                <p>Energy: <span id="energy">100</span>/100</p>
-                <div class="stat-bar">
-                    <div class="stat-fill" id="energyFill"></div>
-                </div>
+    <a href="start-screen.html" class="dev-activity backBtn">Back to Menu</a>
+    <button id="toggleMusic" class="music-toggle">
+        <i class="fas fa-volume-mute"></i>
+    </button>
+
+    <div class="window-tab">
+        <p class="close-btn">X</p>
+        <p class="minimize-btn">-</p>
+        <p class="fullscreen-btn">
+            <>
+        </p>
+
+        <div class="game-container">
+
+
+            <!-- Tamagotchi canvas -->
+            <div class="left-panel">
+                <h1 class="game-title">CodeGotchi</h1>
+                <canvas id="gameCanvas" width="768" height="768"></canvas>
             </div>
 
-            <!-- KNOWLEDGE -->
-            <div class="stat-group">
-                <p>Knowledge: <span id="knowledge">0</span>/100</p>
-                <div class="stat-bar">
-                    <div class="stat-fill" id="knowledgeFill"></div>
-                </div>
-            </div>
+            <!-- Info and controls -->
+            <div class="right-panel">
 
-            <!-- MOTIVATION -->
-            <div class="stat-group">
-                <p>Motivation: <span id="motivation">100</span>/100</p>
-                <div class="stat-bar">
-                    <div class="stat-fill" id="motivationFill"></div>
-                </div>
-            </div>
+                <div>
 
-            <!-- STRESS -->
-            <div class="stat-group">
-                <p>Stress: <span id="stress">0</span>/100</p>
-                <div class="stat-bar">
-                    <div class="stat-fill" id="stressFill"></div>
+                    <p id="dev-name"></p>
+                    <p id="displayLevel">Level: 1, Junior Developer</p>
+                    <p id="congratsMessage" style="font-weight: bold; margin-top: 10px;"></p>
                 </div>
-            </div>
-            <div class="button-container">
-                <button class="dev-activity" id="code">Code</button>
-                <button class="dev-activity" id="study">
-                    Study
-                </button>
-                <button class="dev-activity" id="debug">Debug</button>
-                <button class="dev-activity" id="sleep">Sleep</button>
-                <button class="dev-activity" id="break">Take a break!</button>
-                <button class="dev-activity" id="freeTime">Free time</button>
-                <button id="toggleMusic" class="dev-activity">🎵 Toggle Music</button>
 
+                <div class="stats">
+                    <!-- ENERGY -->
+                    <div class="stat-group">
+                        <p>Energy: <span id="energy">100</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="energyFill"></div>
+                        </div>
+                    </div>
+
+                    <!-- KNOWLEDGE -->
+                    <div class="stat-group">
+                        <p>Knowledge: <span id="knowledge">0</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="knowledgeFill"></div>
+                        </div>
+                    </div>
+
+                    <!-- MOTIVATION -->
+                    <div class="stat-group">
+                        <p>Motivation: <span id="motivation">100</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="motivationFill"></div>
+                        </div>
+                    </div>
+
+                    <!-- STRESS -->
+                    <div class="stat-group">
+                        <p>Stress: <span id="stress">0</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="stressFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button class="dev-activity" id="code">Code</button>
+                    <button class="dev-activity" id="study">Study</button>
+                    <button class="dev-activity" id="debug">Debug</button>
+                    <button class="dev-activity" id="sleep">Sleep</button>
+                    <button class="dev-activity" id="break">Take a break!</button>
+                    <button class="dev-activity" id="freeTime">Free time</button>
+
+
+                </div>
             </div>
         </div>
 
-        <!-- <input type="text" id="userInput" placeholder="Enter user name">
-        <button id="submitBtn" type="submit">Submit</button>
-        <button id="renameBtn" type="submit">Rename</button> -->
-    </div>
+        <!-- Final win screen -->
+        <div id="finalScreen" style="display: none;" class="final-message-screen">
+            <img class="winner-image" src="./winner-image-1.gif" alt="Final Form" />
+            <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
+            <button id="resetButton" class="dev-activity">Play Again</button>
+        </div>
 
-
-    <div id="finalScreen" style="display: none;" class="final-message-screen">
-        <img class="winner-image" src="./winner-image-1.gif" alt="Final Form" />
-        <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
-        <button id="resetButton" class="dev-activity">Play Again</button>
+        <!-- Game Over screen -->
+        <div id="gameOverScreen" style="display: none;" class="final-message-screen">
+            <h1 id="gameOverMessage">🛑 Game Over</h1>
+            <img class="winner-image" src="./loser-image-1.gif" alt="Game Over" />
+            <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
+        </div>
     </div>
-    <div id="gameOverScreen" class="final-message-screen">
-        <h1 id="gameOverMessage">🛑 Game Over</h1>
-        <img class="winner-image" src="/loser-image-1.gif" alt="Game Over" />
-        <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
-    </div>
-
     <script type="module" src="gameLogic.js"></script>
+    <script src="start-screen.js"></script>
     <script type="module" src="spriteAnimation.js"></script>
 </body>
 
