@@ -221,13 +221,28 @@ button:disabled {
 	transform: rotate(45deg);
 }
 .backBtn {
+	color: #000;
 	position: absolute;
+	/* text-decoration: none; */
 	margin: 30px;
 	right: 10px;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+/* .backBtn:hover {
+	color: #000;
+	text-decoration: none;
+} */
+a {
+	color: #000;
+	text-decoration: none;
+}
+a:hover {
+	color: #000;
+	text-decoration: none;
 }
 
 .nes-field {
@@ -245,7 +260,6 @@ button:disabled {
 	color: inherit;
 	padding: 0;
 	opacity: 1;
-
 	transition: transform 0.2s ease-in-out;
 }
 
@@ -271,120 +285,4 @@ button:disabled {
 
 .toast.show {
 	opacity: 1;
-}
-
-/* ====================================================================================*/
-/* ==================================================================================== */
-/* MEDIA QUERY STYLES FOR TABLET AND LARGER MOBILE PHONE SCREENS (from 768px to 1024px) */
-/* ==================================================================================== */
-/* ======================= =↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓= =====================*/
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-	.game-container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 30px;
-		/* gap: 30px; */
-	}
-
-	.left-panel,
-	.right-panel {
-		/* width: 100%; */
-		align-items: center;
-		text-align: start;
-	}
-
-	.right-panel {
-		align-items: left;
-		margin-top: 0;
-	}
-	.game-title {
-		margin-top: 50px;
-	}
-
-	canvas {
-		width: 450px;
-		height: 450px;
-	}
-
-	.stat-bar {
-		width: 350px;
-		height: 16px;
-	}
-
-	.button-container button {
-		font-size: 10px;
-		padding: 8px 12px;
-	}
-
-	.stats {
-		align-items: start;
-	}
-}
-
-/* ================================================================================ */
-/* ================================================================================ */
-/* MEDIA QUERY STYLES FOR MOBILE PHONE SCREENS (up to 768px ) */
-/* ================================================================================ */
-/* ==================== =↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓= ===================*/
-@media screen and (max-width: 767px) {
-	.game-container {
-		/* display: grid !important; */
-		grid-template-columns: 1fr;
-		justify-items: center;
-		padding: 30px;
-	}
-
-	.left-panel,
-	.right-panel {
-		/* width: 100%; */
-		justify-items: center;
-		align-items: center;
-		text-align: left;
-	}
-	.right-panel {
-		margin-top: 0;
-	}
-	.right-panel-inner {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		justify-items: center;
-	}
-
-	.game-title {
-		font-size: 32px;
-		margin-top: 50px;
-	}
-
-	#displayLevel {
-		font-size: 12px;
-	}
-	canvas {
-		width: 450px;
-		height: 450px;
-	}
-
-	.stat-bar {
-		width: 150px;
-		height: 16px;
-	}
-	.stats p {
-		font-size: 12px;
-	}
-
-	.button-container button {
-		font-size: 10px;
-		padding: 2px 4px;
-	}
-	.button-container {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 10px;
-		justify-content: center;
-		margin-top: 0;
-	}
-
-	.stats {
-		text-align: left;
-	}
 }

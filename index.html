@@ -24,6 +24,10 @@
             align-items: center;
             z-index: 10000;
             font-family: "Press Start 2P", monospace;
+            background-image: url("./bg.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     </style>
 </head>
@@ -31,16 +35,15 @@
 <body>
     <div id="startScreen" class="start-screen">
         <h1 class="game-title">CodeGotchi</h1>
-        <a href="codegotchi.html" class="dev-activity">Start Game</a>
-        <!-- <input type="text" id="userInput" placeholder="Name your Dev" /> -->
-
         <div class="nes-field">
             <label for="name_field">Your name</label>
             <input type="text" id="userInput" class="nes-input">
+            <button class="dev-activity" id="submitBtn" style="margin-top: 30px;">Name</button>
         </div>
-        <button class="dev-activity" id="submitBtn">Name</button>
-    </div>
+        <a href="codegotchi.html" class="dev-activity">Start Game</a>
+        <!-- <input type="text" id="userInput" placeholder="Name your Dev" /> -->
 
+    </div>
     <script type="module" src="start-screen.js"></script>
 
 </body>
