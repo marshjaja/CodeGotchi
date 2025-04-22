@@ -1,11 +1,17 @@
-const submitBtn = document.getElementById("submitBtn");
-if (submitBtn) {
-	submitBtn.addEventListener("click", () => {
-		const name = document.getElementById("userInput").value.trim();
+const startGameBtn = document.getElementById("startGameBtn");
+if (startGameBtn) {
+	startGameBtn.addEventListener("click", (e) => {
+		e.preventDefault();
+		const nameInput = document.getElementById("userInput");
+		let name = nameInput.value.trim();
+
+		if (!name) {
+			name = localStorage.getItem("dev-name");
+		}
 
 		if (name) {
 			localStorage.setItem("dev-name", name);
-			window.location.href = "index.html";
+			window.location.href = "codegotchi.html";
 		} else {
 			alert("Please enter a name for your Dev!");
 		}
