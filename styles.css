@@ -291,12 +291,11 @@ button:disabled {
 	.right-panel {
 		/* width: 100%; */
 		align-items: center;
-		text-align: left;
+		text-align: start;
 	}
 
 	.right-panel {
 		align-items: left;
-
 		margin-top: 0;
 	}
 	.game-title {
@@ -366,7 +365,7 @@ button:disabled {
 	}
 
 	.stat-bar {
-		width: 200px;
+		width: 150px;
 		height: 16px;
 	}
 	.stats p {
