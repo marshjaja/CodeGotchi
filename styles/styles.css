@@ -51,7 +51,7 @@ button:disabled {
 	gap: 40px;
 	padding: 10px;
 	border: 5px solid black;
-	box-shadow: 6px 6px 0 #000;
+	box-shadow: 6px 6px 0 #000 !important;
 }
 
 .left-panel {
@@ -310,7 +310,7 @@ a:hover {
 	align-items: center;
 	z-index: 1;
 	font-family: "Press Start 2P", monospace;
-	background-image: url("./purple-wave-background.webp");
+	background-image: url("/images/purple-wave-background.webp");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;

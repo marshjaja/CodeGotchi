@@ -1,4 +1,4 @@
-import { level, gameState } from "./gameLogic";
+import { level, gameState } from "./js/gameLogic";
 // PERFORM THE "CODE" ACTION, DECREASE ENERGY, GAIN KNOWLEDGE, COULD INCREASE STRESS
 function code() {
 	if (level.knowledgeLevel === 4) return;

@@ -7,7 +7,16 @@
     <meta name="description"
         content="Adopt your own digital developer. Code, learn, debug, level up and keep your dev happy in this retro pixel-style Tamagotchi mini game.">
     <title>CODEGOTCHI</title>
+
+    <!-- FAVICON ICON -->
     <link rel="icon" type="image/png" href="tamagotchi-favicon-32x.png">
+
+    <!-- EXTERNAL STYLESHEETS, FONTS, LIBRARIES  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </noscript>
     <link rel="stylesheet" href="https://unpkg.com/nes.css/css/nes.min.css" media="print" onload="this.media='all'">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style"
@@ -15,26 +24,28 @@
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     </noscript>
-    <link href="styles.css" rel="stylesheet" />
-    <link href="responsive.css" rel="stylesheet" />
+
+    <!-- LOCAL STYLESHEETS -->
+    <link href="./styles/styles.css" rel="stylesheet" />
+    <link href="./styles/responsive.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="startScreen" class="start-screen">
-        <div class="start-screen-container">
+    <main id="startScreen" class="start-screen">
+        <section class="start-screen-container">
             <h1 class="game-title">CodeGotchi</h1>
-            <label for="name_field">Your name</label>
-            <input type="text" id="userInput" class="nes-input">
-            <p id="dev-name"></p>
-            <p id="not-named-alert"></p>
-
-            <button class="dev-activity" id="submitBtn" style="margin-top: 30px;">Name</button>
-            <a href="codegotchi.html" class="dev-activity" id="startGameBtn" style="margin-top: 20px;">Start Game</a>
-        </div>
-
-    </div>
-    <script type="module" src="start-screen.js"></script>
-
+            <form aria-label="Enter your developer name">
+                <label for="userInput">Your name</label>
+                <input type="text" id="userInput" class="nes-input" name="dev-name" aria-describedby="not-named-alert">
+                <p id="dev-name"></p>
+                <p id="not-named-alert" role="alert"></p>
+                <button class="dev-activity" id="submitBtn" style="margin-top: 30px;">Name</button>
+                <a href="codegotchi.html" class="dev-activity" id="startGameBtn" style="margin-top: 20px;">Start
+                    Game</a>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="./js/start-screen.js"></script>
 </body>
 
 </html>
