@@ -289,3 +289,28 @@ a:hover {
 .toast.show {
 	opacity: 1;
 }
+
+.start-screen {
+	width: 100vw;
+	height: 100vh;
+	color: #000000;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+	font-family: "Press Start 2P", monospace;
+	background-image: url("./purple-wave-background.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.start-screen-container {
+	background-color: #ffffff;
+	padding: 50px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

@@ -180,4 +180,17 @@
 		opacity: 1;
 		transition: transform 0.2s ease-in-out;
 	}
+	.start-screen-container {
+		padding: 20px 10px;
+		border-radius: 10px;
+	}
+	.start-screen-container h1 {
+		font-size: 32px;
+	}
+	#dev-name {
+		font-size: 20px;
+	}
+	#userInput {
+		max-width: 80%;
+	}
 }
