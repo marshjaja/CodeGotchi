@@ -137,34 +137,27 @@ button:disabled {
 
 .dev-activity {
 	background-color: #ffe055;
-	/* border-top: 4px dotted red; */
-	border-right: 4px solid #f9a201;
-	border-bottom: 4px solid #f9a201;
-	/* border-left: 4px dotted red; */
-	/* border-radius: 6px; */
-	box-shadow: 4px 4px 0 #000, /* main drop shadow */ 0 0 0 2px #000;
+	border-right: 6px solid #f9a201;
+	border-bottom: 6px solid #f9a201;
+	box-shadow: 4px 4px 0 #000, 0 0 0 2px #000;
 	font-family: "Press Start 2P", monospace;
 	font-size: 12px;
 	color: #000;
 	padding: 12px 20px;
 	transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out,
 		box-shadow 0.1s ease-in-out;
-	/* image-rendering: pixelated; */
 }
 
 .dev-activity:hover {
-	transform: scale(1.05);
-	filter: brightness(1.1);
-	box-shadow: 2px 2px 0 #000;
+	transform: scale(1.03);
+	filter: brightness(1.03);
+	/* box-shadow: none; */
+	box-shadow: 1px 1px 0 #000, 0 0 0 1px #000;
 }
 
 .dev-activity:active {
 	transform: translate(2px, 2px);
 	box-shadow: 1px 1px 0 #000;
-}
-
-.dev-activity:focus {
-	outline: 2px solid #2b2b2b;
 }
 
 .final-message-screen {
@@ -250,11 +243,6 @@ button:disabled {
 	align-items: center;
 	z-index: 10;
 }
-
-/* .backBtn:hover {
-	color: #000;
-	text-decoration: none;
-} */
 a {
 	color: #000;
 	text-decoration: none;
