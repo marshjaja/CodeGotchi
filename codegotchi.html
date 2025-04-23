@@ -9,7 +9,7 @@
     <title>CODEGOTCHI</title>
 
     <!-- FAVICON ICON -->
-    <link rel="icon" type="image/png" href="tamagotchi-favicon-32x.png">
+    <link rel="icon" type="image/png" href="./images/tamagotchi-favicon-32x.png">
 
     <!-- EXTERNAL STYLESHEETS, FONTS, LIBRARIES  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -68,7 +68,7 @@
             <div>
                 <p id="dev-name"></p>
                 <p id="displayLevel">Level: 1, Junior Developer</p>
-                <p id="congratsMessage" style="font-weight: bold; margin-top: 10px;"></p>
+                <!-- <p id="congratsMessage" style="font-weight: bold; margin-top: 10px;"></p> -->
             </div>
             <div class="right-panel-inner">
                 <!-- STATS CONTAINER -->
@@ -121,19 +121,19 @@
     <!-- Final win screen -->
     <section id="finalScreen" style="display: none;" class="final-message-screen" aria-label="Victory screen">
         <img class="winner-image" src="./images/winner-image-1.gif" width="630" height="630" alt="Win Screen" />
-        <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
+        <h1 id="congratsMessage">Your Dev has reached their form: Head of Software!</h1>
         <button id="resetButton" class="dev-activity">Play Again</button>
     </section>
 
     <!-- Game Over screen -->
     <section id="gameOverScreen" style="display: none;" class="final-message-screen" aria-label="Game over screen">
         <img class="winner-image" src="./images/loser-image-1.gif" width="700" height="700" alt="Game Over Screen" />
-        <h1 id="gameOverMessage">🛑 Game Over</h1>
-        <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
+        <h1 id="gameOverMessage">Game Over</h1>
+        <button id="tryAgainButton" class="dev-activity">Try Again</button>
     </section>
 
-    <script src="./js/start-screen.js"></script>
-    <script type="module" src="./js/gameLogic.js/gameLogic.js"></script>
+    <script src=" ./js/start-screen.js"></script>
+    <script type="module" src="./js/gameLogic.js"></script>
     <script type="module" src="./js/spriteAnimation.js"></script>
     <script type="module" src="./js/audio.js"></script>
     <script type="module" src="./js/gameActivities.js"></script>
