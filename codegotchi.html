@@ -4,14 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Adopt your own digital developer. Code, learn, debug, level up and keep your dev happy in this retro pixel-style Tamagotchi mini game.">
     <title>CODEGOTCHI</title>
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="tamagotchi-favicon-32x.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </noscript>
+    <link rel="stylesheet" href="https://unpkg.com/nes.css/css/nes.min.css" media="print" onload="this.media='all'">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    </noscript>
     <link href="styles.css" rel="stylesheet" />
-
     <link href="responsive.css" rel="stylesheet" />
 
 </head>
@@ -90,7 +99,7 @@
 
                     <div class="button-container">
                         <button class="dev-activity" id="code">Code</button>
-                        <button type="button" class="nes-btn is-warning" id="code">Code</button>
+                        <button type="button" class="nes-btn is-warning dev-activity" id="code">Code</button>
                         <button type="button" class="nes-btn is-warning" id="code">Study</button>
                         <button class="dev-activity" id="study">Study</button>
                         <button class="dev-activity" id="debug">Debug</button>
@@ -104,14 +113,14 @@
 
         <!-- Final win screen -->
         <div id="finalScreen" style="display: none;" class="final-message-screen">
-            <img class="winner-image" src="./winner-image-1.gif" alt="Final Form" />
+            <img class="winner-image" src="./winner-image-1.gif" width="630" height="630" alt="Win Screen" />
             <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
             <button id="resetButton" class="dev-activity">Play Again</button>
         </div>
 
         <!-- Game Over screen -->
         <div id="gameOverScreen" style="display: none;" class="final-message-screen">
-            <img class="winner-image" src="./loser-image-1.gif" alt="Game Over" />
+            <img class="winner-image" src="./loser-image-1.gif" width="700" height="700" alt="Game Over Screen" />
             <h1 id="gameOverMessage">🛑 Game Over</h1>
             <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
         </div>

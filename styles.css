@@ -1,3 +1,18 @@
+:root {
+	--color-black: #000;
+	--color-white: #fff;
+	--color-light-gray: #d9d8d8;
+	--color-dark-gray: #2b2b2b;
+	--color-crimson: crimson;
+	--color-orange: orange;
+	--color-green: limegreen;
+	--color-yellow: #ffe055;
+	--color-red: red;
+	--color-mid-gray: rgb(138, 138, 138);
+	--color-bg-toast: #333;
+	--color-purple-bg: #ffffff;
+	--color-purple-wave: url("./purple-wave-background.webp");
+}
 body {
 	font-family: "Press Start 2P", system-ui;
 	text-align: center;
@@ -122,16 +137,19 @@ button:disabled {
 
 .dev-activity {
 	background-color: #ffe055;
-	border: 2px dotted black;
-	border-radius: 6px;
-	box-shadow: 4px 4px 0 #000;
+	/* border-top: 4px dotted red; */
+	border-right: 4px solid #f9a201;
+	border-bottom: 4px solid #f9a201;
+	/* border-left: 4px dotted red; */
+	/* border-radius: 6px; */
+	box-shadow: 4px 4px 0 #000, /* main drop shadow */ 0 0 0 2px #000;
 	font-family: "Press Start 2P", monospace;
 	font-size: 12px;
 	color: #000;
 	padding: 12px 20px;
 	transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out,
 		box-shadow 0.1s ease-in-out;
-	image-rendering: pixelated;
+	/* image-rendering: pixelated; */
 }
 
 .dev-activity:hover {
@@ -300,7 +318,7 @@ a:hover {
 	align-items: center;
 	z-index: 1;
 	font-family: "Press Start 2P", monospace;
-	background-image: url("./purple-wave-background.png");
+	background-image: url("./purple-wave-background.webp");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
