@@ -34,94 +34,94 @@
         <i class="fas fa-volume-mute"></i>
     </button>
 
-    <div class="window-tab">
-        <p class="close-btn">X</p>
-        <p class="minimize-btn">-</p>
-        <p class="fullscreen-btn">
+
+    <p class="close-btn">X</p>
+    <p class="minimize-btn">-</p>
+    <p class="fullscreen-btn">
+        <span class="p-brackets">
             <>
-        </p>
+        </span>
+    </p>
+    <div id="devMessage" class="nes-balloon from-left">
+        <p></p>
+    </div>
 
-        <div id="devMessage" class="nes-balloon from-left">
-            <p></p>
+    <div class="nes-container game-container">
+
+
+        <!-- Tamagotchi canvas -->
+        <div class="left-panel">
+            <h1 class="game-title">CodeGotchi</h1>
+            <canvas id="gameCanvas" width="768" height="735"></canvas>
         </div>
 
-        <div class="game-container">
-
-
-            <!-- Tamagotchi canvas -->
-            <div class="left-panel">
-                <h1 class="game-title">CodeGotchi</h1>
-                <canvas id="gameCanvas" width="768" height="735"></canvas>
+        <!-- Info and controls -->
+        <div class="right-panel">
+            <div>
+                <p id="dev-name"></p>
+                <p id="displayLevel">Level: 1, Junior Developer</p>
+                <p id="congratsMessage" style="font-weight: bold; margin-top: 10px;"></p>
             </div>
 
-            <!-- Info and controls -->
-            <div class="right-panel">
-                <div>
-                    <p id="dev-name"></p>
-                    <p id="displayLevel">Level: 1, Junior Developer</p>
-                    <p id="congratsMessage" style="font-weight: bold; margin-top: 10px;"></p>
-                </div>
-
-                <div class="right-panel-inner">
-                    <div class="stats">
-                        <!-- ENERGY -->
-                        <div class="stat-group">
-                            <p>Energy:<br><span id="energy">100</span>/100</p>
-                            <div class="stat-bar">
-                                <div class="stat-fill" id="energyFill"></div>
-                            </div>
-                        </div>
-
-                        <!-- KNOWLEDGE -->
-                        <div class="stat-group">
-                            <p>Knowledge:<br><span id="knowledge">0</span>/100</p>
-                            <div class="stat-bar">
-                                <div class="stat-fill" id="knowledgeFill"></div>
-                            </div>
-                        </div>
-
-                        <!-- MOTIVATION -->
-                        <div class="stat-group">
-                            <p>Motivation:<br><span id="motivation">100</span>/100</p>
-                            <div class="stat-bar">
-                                <div class="stat-fill" id="motivationFill"></div>
-                            </div>
-                        </div>
-
-                        <!-- STRESS -->
-                        <div class="stat-group">
-                            <p>Stress:<br><span id="stress">0</span>/100</p>
-                            <div class="stat-bar">
-                                <div class="stat-fill" id="stressFill"></div>
-                            </div>
+            <div class="right-panel-inner">
+                <div class="stats">
+                    <!-- ENERGY -->
+                    <div class="stat-group">
+                        <p>Energy:<br><span id="energy">100</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="energyFill"></div>
                         </div>
                     </div>
 
-                    <div class="button-container">
-                        <button class="dev-activity" id="code">Code</button>
-                        <button class="dev-activity" id="study">Study</button>
-                        <button class="dev-activity" id="debug">Debug</button>
-                        <button class="dev-activity" id="sleep">Sleep</button>
-                        <button class="dev-activity" id="break">Take a break!</button>
-                        <button class="dev-activity" id="freeTime">Free time</button>
+                    <!-- KNOWLEDGE -->
+                    <div class="stat-group">
+                        <p>Knowledge:<br><span id="knowledge">0</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="knowledgeFill"></div>
+                        </div>
                     </div>
+
+                    <!-- MOTIVATION -->
+                    <div class="stat-group">
+                        <p>Motivation:<br><span id="motivation">100</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="motivationFill"></div>
+                        </div>
+                    </div>
+
+                    <!-- STRESS -->
+                    <div class="stat-group">
+                        <p>Stress:<br><span id="stress">0</span>/100</p>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="stressFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button class="dev-activity" id="code">Code</button>
+                    <button class="dev-activity" id="study">Study</button>
+                    <button class="dev-activity" id="debug">Debug</button>
+                    <button class="dev-activity" id="sleep">Sleep</button>
+                    <button class="dev-activity" id="break">Take a break!</button>
+                    <button class="dev-activity" id="freeTime">Free time</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Final win screen -->
-        <div id="finalScreen" style="display: none;" class="final-message-screen">
-            <img class="winner-image" src="./winner-image-1.gif" width="630" height="630" alt="Win Screen" />
-            <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
-            <button id="resetButton" class="dev-activity">Play Again</button>
-        </div>
+    <!-- Final win screen -->
+    <div id="finalScreen" style="display: none;" class="final-message-screen">
+        <img class="winner-image" src="./winner-image-1.gif" width="630" height="630" alt="Win Screen" />
+        <h1 id="congratsMessage">🎓 Your Dev has reached their form: Head of Software!</h1>
+        <button id="resetButton" class="dev-activity">Play Again</button>
+    </div>
 
-        <!-- Game Over screen -->
-        <div id="gameOverScreen" style="display: none;" class="final-message-screen">
-            <img class="winner-image" src="./loser-image-1.gif" width="700" height="700" alt="Game Over Screen" />
-            <h1 id="gameOverMessage">🛑 Game Over</h1>
-            <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
-        </div>
+    <!-- Game Over screen -->
+    <div id="gameOverScreen" style="display: none;" class="final-message-screen">
+        <img class="winner-image" src="./loser-image-1.gif" width="700" height="700" alt="Game Over Screen" />
+        <h1 id="gameOverMessage">🛑 Game Over</h1>
+        <button id="tryAgainButton" class="dev-activity" style="margin-top: 50px;">Try Again</button>
     </div>
     <script type="module" src="gameLogic.js"></script>
     <script src="start-screen.js"></script>

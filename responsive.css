@@ -9,12 +9,10 @@
 		flex-direction: column;
 		align-items: center;
 		padding: 30px;
-		/* gap: 30px; */
 	}
 
 	.left-panel,
 	.right-panel {
-		/* width: 100%; */
 		align-items: center;
 		text-align: start;
 	}
@@ -45,6 +43,14 @@
 	.stats {
 		align-items: start;
 	}
+	#devMessage {
+		position: absolute;
+		top: 130px;
+		left: 53%;
+		z-index: 10;
+		max-width: 220px;
+		pointer-events: none;
+	}
 }
 
 /* ================================================================================ */
@@ -54,7 +60,6 @@
 /* ==================== =↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓=↓= ===================*/
 @media screen and (max-width: 767px) {
 	.game-container {
-		/* display: grid !important; */
 		grid-template-columns: 1fr;
 		justify-items: center;
 		padding: 30px;
@@ -62,7 +67,6 @@
 
 	.left-panel,
 	.right-panel {
-		/* width: 100%; */
 		justify-items: center;
 		align-items: center;
 		text-align: left;
@@ -114,11 +118,11 @@
 	}
 	.close-btn {
 		position: absolute;
-		margin: 30px;
-		left: 5px;
+		margin: 20px;
+		left: 20px;
 		width: 32px;
 		height: 32px;
-		border-radius: 20%;
+		border-radius: 50%;
 		background-color: red;
 		border: 3px dotted rgb(0, 0, 0);
 		cursor: pointer;
@@ -129,8 +133,8 @@
 
 	.minimize-btn {
 		position: absolute;
-		margin: 30px;
-		left: 40px;
+		margin: 20px;
+		left: 60px;
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
@@ -144,8 +148,8 @@
 
 	.fullscreen-btn {
 		position: absolute;
-		margin: 30px;
-		left: 80px;
+		margin: 20px;
+		left: 100px;
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
@@ -192,5 +196,14 @@
 	}
 	#userInput {
 		max-width: 80%;
+	}
+	#devMessage {
+		position: absolute;
+		top: 200px;
+		left: 55%;
+		z-index: 10;
+		max-width: 180px;
+		pointer-events: none;
+		font-size: 10px;
 	}
 }
