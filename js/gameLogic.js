@@ -22,6 +22,7 @@ const tryAgainButton = document.getElementById("tryAgainButton");
 const congratsMessage = document.getElementById("congratsMessage");
 const actionButtons = document.querySelectorAll(".dev-activity");
 
+// AN OBJECT THAT MAPS KNOWLEDGE LEVELS TO DEVELOPER TITLES
 const developerLevel = {
 	0: "Beginner",
 	1: "Junior Developer",
@@ -29,16 +30,24 @@ const developerLevel = {
 	3: "Senior Developer",
 	4: "Head of Software",
 };
+// TRY TO GET THE SAVED LEVEL DATA FROM LOCALSTORAGE
+// IF THERE IS NO SAVED DATA, IT WILL USE THE DEFAULT KNOWLEDGELEVEL WHICH IS SET TO 0.
 let level = JSON.parse(localStorage.getItem("levelUp")) || {
 	knowledgeLevel: 0,
 };
+// SETS THE DEVELOPER TITLE BASED ON THE CURRENT KNOWLEDGE LEVEL.
 const devTitle = developerLevel[level.knowledgeLevel];
+
+// UPDATES THE TEXT IN THE ELEMENT WITH ID "DISPLAYLEVEL".
+// IT SHOWS THE LEVEL AND THE CORRESPONDING DEVELOPER TITLE.
 document.getElementById(
 	"displayLevel"
 ).textContent = `Level: ${level.knowledgeLevel}, ${devTitle}`;
 
+// SEE IF THERE IS SAVED GAME STATE DATA IN LOCALSTORAGE AND PARSE IT.
+// IF THERE IS NO SAVED DATA, IT WILL USE THIS DEFAULT OBJECT INSTEAD.
+// THIS OBJECT STORES THE INITIAL STATS FOR THE PLAYER’S DEV.
 let gameState = JSON.parse(localStorage.getItem("gameState")) || {
-	DEVNAME: "",
 	energy: 100,
 	knowledge: 0,
 	motivation: 100,
@@ -50,10 +59,14 @@ const knowledgeBar = document.getElementById("knowledgeFill");
 const motivationBar = document.getElementById("motivationFill");
 const stressBar = document.getElementById("stressFill");
 
-// let gameStarted = false; // Add this line  to track if the game has started.
-
 updateStats();
 
+// THIS FUNCTION HANDLES UPDATING THE DEV'S STATS ON SCREEN AND IN STORAGE.
+// IT KEEPS THE NUMBERS BETWEEN 0 AND 100, SO THEY DON’T GO < 0 OR > 100.
+// THEN IT UPDATES THE NUMBERS AND BARS IN THE UI TO MATCH THE CURRENT STATS.
+// SAVES THE NEW STATS TO LOCALSTORAGE SO THEY DON'T RESET UPON REFRESH.
+// IF ENERGY DROPS TO 0, IT SHOWS THE GAME OVER SCREEN AND STOPS THE GAME.
+// IF KNOWLEDGE REACHES 100, YOUR DEV LEVELS UP AND KNOWLEDGE RESETS TO 0.
 function updateStats() {
 	if (gameState.energy > 100) {
 		gameState.energy = 100;
@@ -94,6 +107,7 @@ function updateStats() {
 		100
 	);
 
+	// UPDATE THE PERCENTAGE AND DEFINED COLOUR OF EACH STAT BAR
 	energyBar.style.width = `${gameState.energy}%`;
 	updateBarColor(energyBar, gameState.energy);
 	knowledgeBar.style.width = `${gameState.knowledge}%`;
@@ -103,21 +117,30 @@ function updateStats() {
 	stressBar.style.width = `${gameState.stress}%`;
 	updateBarColor(stressBar, gameState.stress);
 
+	// SAVE THE UPDATED GAME STATE TO LOCALSTORAGE
 	localStorage.setItem("gameState", JSON.stringify(gameState));
 
+	// IF ENERGY REACHES 0, THE GAME ENDS
 	if (gameState.energy <= 0) {
-		// Check if gameStarted is true
 		gameOverSound.play();
 		gameOverBackground.play();
 		backgroundMusic.pause();
 		showGameOverScreen();
 	}
+	// IF KNOWLEDGE REACHES 100, IT WILL LEVEL UP AND RESET KNOWLEDGE TO 0
 	if (gameState.knowledge >= 100) {
 		levelUp();
 		gameState.knowledge = 0;
 	}
 }
 
+// THIS FUNCTION HANDLES THE CHANGES TO THE COLOUR OF A STAT BAR BASED ON ITS VALUE.
+// FIRST, IT REMOVES ANY EXISTING COLOUR CLASSES (LOW, MEDIUM, HIGH).
+// THEN IT APPLIES A NEW CLASS BASED ON THE VALUE:
+// - IF 70 OR ABOVE, IT ADDS THE "HIGH" CLASS (GREEN).
+// - IF BETWEEN 40 AND 69, IT ADDS THE "MEDIUM" CLASS (ORANGE).
+// - IF BELOW 40, IT ADDS THE "LOW" CLASS (RED).
+// PROVIDES VISUAL FEEDBACK TO SHOW IF A STAT IS GOOD, OKAY, OR LOW.
 function updateBarColor(statBarColour, value) {
 	statBarColour.classList.remove("low", "medium", "high");
 
@@ -130,14 +153,11 @@ function updateBarColor(statBarColour, value) {
 	}
 }
 
-// THIS FUNCTION HANDLES THE DEVELOPER LEVELING UP.
-// IF THE CURRENT KNOWLEDGE LEVEL IS LESS THAN THE MAXIMUM (4), INCREMENTS THE LEVEL BY ONE.
-// INCREMENTS THE KNOWLEDGE LEVEL AND UPDATES IT IN LOCAL STORAGE.
-// DISPLAYS THE DEV'S TITLE BASED ON THE (NEW) LEVEL.
-// UPDATES THE DISPLAYED LEVEL AND TITLE IN THE UI.
-// PLAYS A LEVEL-UP SOUND FOR EVERY NEW LEVEL REACH.
-// CHECKS IF THE DEVELOPER HAS REACHED THE MAXIMUM LEVEL (4) AND, IF SO, TRIGGERS THE FINAL SCREEN.
-
+// THIS FUNCTION HANDLES THE LEVELING UP OF THE DEVELOPER
+// IF THE KNOWLEDGE LEVEL IS BELOW 4, IT INCREASES IT BY 1 AND SAVES IT TO LOCAL STORAGE
+// LOOKS UP THE NEW DEVELOPER TITLE AND UPDATES THE DISPLAYED TEXT.
+// PLAYS A LEVEL-UP SOUND FOR EVERY NEW LEVEL REACH
+// CHECKS IF THE DEVELOPER HAS REACHED THE MAXIMUM LEVEL (4) ,IT SHOWS THE FINAL SCREEN
 function levelUp() {
 	if (level.knowledgeLevel < 4) {
 		level.knowledgeLevel += 1;
@@ -155,6 +175,11 @@ function levelUp() {
 	}
 }
 
+// THIS FUNCTION DISPLAYS A TEMPORARY MESSAGE INSIDE A TEXT BALLOON.
+// IT SETS THE BALLOON'S TEXT TO WHATEVER IS PASSED IN AS "TEXT".
+// THEN IT MAKES THE BALLOON VISIBLE BY SETTING DISPLAY TO "BLOCK".
+// AFTER 3.5 SECONDS, IT HIDES THE BALLOON AGAIN BY DISPLAY "NONE".
+// THIS IS USED TO SHOW  FEEDBACK OR MESSAGES TO THE USER IN THE UI.
 function showDevMessage(text) {
 	const balloonText = document.getElementById("devMessage");
 	balloonText.querySelector("p").textContent = text;
@@ -165,10 +190,10 @@ function showDevMessage(text) {
 	}, 3500);
 }
 
+// THIS FUNCTION SHOWS THE FINAL WIN SCREEN WHEN TRIGGERED.
+// IT PLAYS A WIN SOUND, PAUSES THE BACKGROUND MUSIC,
+// HIDES OTHER SCREENS, AND DISPLAYS THE FINAL SCREEN.
 function showFinalScreen() {
-	// actionButtons.forEach((btn) => {
-	// 	btn.disabled = true;
-	// });
 	winSound.play();
 	backgroundMusic.pause();
 	congratsMessage.style.display = "block";
@@ -177,16 +202,20 @@ function showFinalScreen() {
 	gameContainer.style.display = "none";
 }
 
+// THIS FUNCTION SHOWS THE GAME OVER SCREEN WHEN TRIGGERED.
+// IT HIDES OTHER SCREENS AND DISPLAYS THE GAME OVER SCREEN.
 function showGameOverScreen() {
-	// actionButtons.forEach((btn) => {
-	// 	btn.disabled = true;
-	// });
 	gameOverMessage.style.display = "block";
 	finalScreen.style.display = "none";
 	gameOverScreen.style.display = "flex";
 	gameContainer.style.display = "none";
 }
 
+// THIS FUNCTION RESETS THE GAME STATE TO ITS INITIAL VALUES.
+// IT RESETS ENERGY, KNOWLEDGE, MOTIVATION, STRESS, AND LEVEL TO DEFAULTS.
+// PAUSES MAIN GAME AUDIO AND PLAYS  SAVES THE RESET STATE TO LOCAL STORAGE.
+// IT UPDATES THE LEVEL DISPLAY, HIDES END SCREENS, SHOWS THE GAME AGAIN,
+// ENABLES ALL ACTION BUTTONS, AND CALLS updateStats() TO REFLECT THE CHANGES.
 function resetGame() {
 	gameState.energy = 100;
 	gameState.knowledge = 0;
@@ -205,18 +234,13 @@ function resetGame() {
 	finalScreen.style.display = "none";
 	gameOverScreen.style.display = "none";
 	gameContainer.style.display = "flex";
-	// gameStarted = false;
-	actionButtons.forEach((btn) => {
-		btn.disabled = false;
-	});
 	updateStats();
 }
 
-// Attach music start to a user click
-const toggleBtn = document.getElementById("toggleMusic");
-const musicIcon = toggleBtn.querySelector("i");
+const musicToggle = document.getElementById("toggleMusic");
+const musicIcon = musicToggle.querySelector("i");
 
-toggleBtn.addEventListener("click", () => {
+musicToggle.addEventListener("click", () => {
 	if (backgroundMusic.paused) {
 		backgroundMusic.play();
 		musicIcon.classList.remove("fa-volume-mute");
@@ -227,6 +251,46 @@ toggleBtn.addEventListener("click", () => {
 		musicIcon.classList.add("fa-volume-mute");
 	}
 });
+
+//  WHEN CLICKED TOGGLES LOSE MUSIC ON AND OFF
+// UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON
+const winSoundToggle = document.getElementById("toggleWinSound");
+const winSoundIcon = document.getElementById("winScreenIcon");
+
+if (winSoundToggle) {
+	winSoundToggle.addEventListener("click", () => {
+		if (winSound.paused) {
+			winSound.play();
+			winSoundIcon.classList.remove("fa-volume-mute");
+			winSoundIcon.classList.add("fa-volume-up");
+		} else {
+			winSound.pause();
+			winSoundIcon.classList.remove("fa-volume-up");
+			winSoundIcon.classList.add("fa-volume-mute");
+		}
+	});
+}
+
+//  WHEN CLICKED TOGGLES LOSE MUSIC ON AND OFF
+// UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON
+const loseSoundToggle = document.getElementById("gameOverSoundToggle");
+const loseSoundIcon = document.getElementById("loseScreenIcon");
+
+if (loseSoundToggle) {
+	loseSoundToggle.addEventListener("click", () => {
+		if (loseSoundIcon.paused) {
+			gameOverSound.play();
+			gameOverBackground.play();
+			loseSoundIcon.classList.remove("fa-volume-mute");
+			loseSoundIcon.classList.add("fa-volume-up");
+		} else {
+			gameOverSound.pause();
+			gameOverBackground.pause();
+			loseSoundIcon.classList.remove("fa-volume-up");
+			loseSoundIcon.classList.add("fa-volume-mute");
+		}
+	});
+}
 
 document.getElementById("code").addEventListener("click", code);
 document.getElementById("study").addEventListener("click", study);

@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Adopt your own digital developer. Code, learn, debug, level up and keep your dev happy in this retro pixel-style Tamagotchi mini game.">
     <title>CODEGOTCHI</title>
@@ -26,29 +26,27 @@
     </noscript>
 
     <!-- LOCAL STYLESHEETS -->
-    <link href="./styles/styles.css" rel="stylesheet" />
-    <link href="./styles/responsive.css" rel="stylesheet" />
+    <link href="./styles/styles.css" rel="stylesheet">
+    <link href="./styles/responsive.css" rel="stylesheet">
 </head>
 
 <body>
 
     <!-- HEADER WITH "NAV" NA D "SETTING" OPTIONS -->
     <header>
-        <a href="index.html" class="dev-activity backBtn">
-            <a href="index.html" class="dev-activity backBtn" aria-label="Return to main menu">
-                <i style="margin-right: 10px;" class="fa-solid fa-chevron-left" aria-hidden="true"></i>Menu
-            </a>
-            <button id="toggleMusic" class="music-toggle" title="Pause / Play music"
-                aria-label="Toggle background music">
-                <i class="fas fa-volume-mute" aria-hidden="true"></i>
-            </button>
-            <p class="close-btn">X</p>
-            <p class="minimize-btn">-</p>
-            <p class="fullscreen-btn">
-                <span class="p-brackets" aria-hidden="true">
-                    <>
-                </span>
-            </p>
+        <a href="index.html" class="dev-activity backBtn" aria-label="Return to main menu">
+            <i style="margin-right: 10px;" class="fa-solid fa-chevron-left" aria-hidden="true"></i>Menu
+        </a>
+        <button id="toggleMusic" class="music-toggle" title="Pause / Play music" aria-label="Toggle background music">
+            <i class="fas fa-volume-mute" aria-hidden="true"></i>
+        </button>
+        <p class="close-btn">X</p>
+        <p class="minimize-btn">-</p>
+        <p class="fullscreen-btn">
+            <span class="p-brackets" aria-hidden="true">
+                &lt;&gt;
+            </span>
+        </p>
     </header>
 
     <!-- PAGE MAIN CONTENT -->
@@ -60,7 +58,7 @@
         <!-- TAMAGOTCHI CANVAS -->
         <section class="left-panel" aria-label="Tamagotchi Canvas">
             <h1 class="game-title">CodeGotchi</h1>
-            <canvas id="gameCanvas" width="768" height="735"></canvas>
+            <canvas id="gameCanvas" width="700" height="710"></canvas>
         </section>
 
         <!-- RIGHT PANEL, DEV INFO AND DEV STATS -->
@@ -120,16 +118,23 @@
 
     <!-- Final win screen -->
     <section id="finalScreen" style="display: none;" class="final-message-screen" aria-label="Victory screen">
-        <img class="winner-image" src="./images/winner-image-1.gif" width="630" height="630" alt="Win Screen" />
+        <img class="winner-image" src="./images/winner-gif-loop-3.gif" width="630" height="630" alt="Win Screen">
         <h1 id="congratsMessage">Your Dev has reached their form: Head of Software!</h1>
         <button id="resetButton" class="dev-activity">Play Again</button>
+        <button id="toggleWinSound" class="music-toggle" aria-label="Toggle win sound">
+            <i id="winScreenIcon" class="fas fa-volume-mute"></i>
+        </button>
+
     </section>
 
     <!-- Game Over screen -->
     <section id="gameOverScreen" style="display: none;" class="final-message-screen" aria-label="Game over screen">
-        <img class="winner-image" src="./images/loser-image-1.gif" width="700" height="700" alt="Game Over Screen" />
+        <img class="winner-image" src="./images/loser-gif-loop-3.gif" width="700" height="700" alt="Game Over Screen">
         <h1 id="gameOverMessage">Game Over</h1>
         <button id="tryAgainButton" class="dev-activity">Try Again</button>
+        <button id="gameOverSoundToggle" class="music-toggle" aria-label="Toggle Game Over sound">
+            <i id="loseScreenIcon" class="fas fa-volume-mute"></i>
+        </button>
     </section>
 
     <script src=" ./js/start-screen.js"></script>

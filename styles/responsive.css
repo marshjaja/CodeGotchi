@@ -18,7 +18,7 @@
 	}
 
 	.right-panel {
-		align-items: left;
+		align-items: start;
 		margin-top: 0;
 	}
 	.game-title {

@@ -56,12 +56,9 @@ function code() {
 // UPDATES THE GAME STATISTICS.
 // PLAYS A SOUND ON BUTTON CLICK
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
-
 function study() {
-	// gameStarted = true;
 	if (level.knowledgeLevel === 4) return;
 	btnSound.play();
-
 	gameState.energy -= 5;
 	gameState.motivation += 10;
 
@@ -85,12 +82,9 @@ function study() {
 // DISPLAYS A UI MESSAGE BASED ON THE DEBUGGING OUTCOME, AFFECTING MOTIVATION AND POTENTIALLY STRESS.
 // PLAYS A SOUND ON BUTTON CLICK
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
-
 function debug() {
-	// gameStarted = true;
 	if (level.knowledgeLevel === 4) return;
 	btnSound.play();
-
 	gameState.energy -= 5;
 	gameState.stress += 5;
 
@@ -149,10 +143,8 @@ function takeBreak() {
 // PLAYS A SOUND ON BUTTON CLICK
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
 function sleep() {
-	// gameStarted = true;
 	if (level.knowledgeLevel === 4) return;
 	btnSound.play();
-
 	gameState.energy = 100;
 	gameState.stress -= 50;
 	showDevMessage("Zzz...Taking a nap... don't deploy anything without me!");
@@ -166,7 +158,6 @@ function sleep() {
 // PLAYS A SOUND ON BUTTON CLICK
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
 function freeTimeActivity() {
-	// gameStarted = true;
 	if (level.knowledgeLevel === 4) return;
 	btnSound.play();
 
