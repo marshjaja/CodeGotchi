@@ -278,7 +278,7 @@ const loseSoundIcon = document.getElementById("loseScreenIcon");
 
 if (loseSoundToggle) {
 	loseSoundToggle.addEventListener("click", () => {
-		if (loseSoundIcon.paused) {
+		if (gameOverSound.paused) {
 			gameOverSound.play();
 			gameOverBackground.play();
 			loseSoundIcon.classList.remove("fa-volume-mute");
