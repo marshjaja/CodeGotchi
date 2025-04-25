@@ -39,6 +39,7 @@
         </a>
         <button id="toggleMusic" class="music-toggle" title="Pause / Play music" aria-label="Toggle background music">
             <i class="fas fa-volume-mute" aria-hidden="true"></i>
+            <span style="font-size:10px;" class="musicText">Off</span>
         </button>
         <p class="close-btn">X</p>
         <p class="minimize-btn">-</p>
@@ -116,27 +117,31 @@
         </section>
     </main>
 
-    <!-- Final win screen -->
+    <!-- WIN SCREEN -->
     <section id="finalScreen" style="display: none;" class="final-message-screen" aria-label="Victory screen">
         <img class="winner-image" src="./images/winner-gif-loop-3.gif" width="630" height="630" alt="Win Screen">
         <h1 id="congratsMessage">Your Dev has reached their form: Head of Software!</h1>
         <button id="resetButton" class="dev-activity">Play Again</button>
         <button id="toggleWinSound" class="music-toggle" aria-label="Toggle win sound">
             <i id="winScreenIcon" class="fas fa-volume-mute"></i>
+            <span style="font-size:10px;" class="musicText">Off</span>
+
         </button>
 
     </section>
 
-    <!-- Game Over screen -->
+    <!-- GAME OVER SCREEN -->
     <section id="gameOverScreen" style="display: none;" class="final-message-screen" aria-label="Game over screen">
         <img class="winner-image" src="./images/loser-gif-loop-3.gif" width="700" height="700" alt="Game Over Screen">
         <h1 id="gameOverMessage">Game Over</h1>
         <button id="tryAgainButton" class="dev-activity">Try Again</button>
         <button id="gameOverSoundToggle" class="music-toggle" aria-label="Toggle Game Over sound">
             <i id="loseScreenIcon" class="fas fa-volume-mute"></i>
+            <span style="font-size:10px;" class="musicText">Off</span>
         </button>
     </section>
 
+    <!-- SCRIPTS IMPORTS -->
     <script src=" ./js/start-screen.js"></script>
     <script type="module" src="./js/gameLogic.js"></script>
     <script type="module" src="./js/spriteAnimation.js"></script>

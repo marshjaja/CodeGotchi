@@ -1,30 +1,42 @@
 const nameBtn = document.getElementById("submitBtn");
 const startGameBtn = document.getElementById("startGameBtn");
 const alertDevName = document.getElementById("not-named-alert");
+const displayDevName = document.getElementById("dev-name");
 
 // THIS SECTION HANDLES THE 'NAME YOUR DEV' BUTTON FUNCTIONALITY
-// ON BUTTON CLCK THE NAME IS SAVED IT TO LOCAL STORAGE.
-//  A SUCCESS MESSAGE IS DISPLAYED IN THE UI.
-// IF NO NAME IS ENTERED, AN ERROR MESSAGE IS DISPLAYED.
-// AFTER A SUCCESS OR ERROR MESSAGE, THE INPUT FIELD IS CLEARED.
+// ON BUTTON CLICK, THE NAME IS SAVED TO LOCAL STORAGE.
+// A SUCCESS MESSAGE IS DISPLAYED IF NAME IS VALID AND BETWEEN 4 TO 12 CHARACTERS.
+// IF NAME IS EMPTY, THE USER IS PROMPTED TO ENTER A NAME.
+// IF THE NAME IS INVALID (NOT BETWEEN 4 TO 12 CHARACTERS), AN ERROR MESSAGE IS DISPLAYED.
+// MESSAGE IS CLEARED AFTER 1.5 SECONDS AND THE INPUT FIELD IS RESET.
+
 if (nameBtn) {
 	nameBtn.addEventListener("click", (e) => {
 		e.preventDefault();
 		const nameInput = document.getElementById("userInput");
 		const chosenName = nameInput.value.trim();
 
-		if (chosenName) {
-			localStorage.setItem("dev-name", chosenName);
-
-			alertDevName.textContent = `You've named your Dev: ${chosenName}`;
-			alertDevName.style.color = "green";
+		if (!chosenName) {
+			alertDevName.textContent = "Please enter a name!";
+			alertDevName.style.color = "red";
 			alertDevName.style.marginTop = "10px";
 
 			setTimeout(() => {
 				alertDevName.textContent = "";
 			}, 1500);
+		} else if (chosenName.length >= 4 && chosenName.length <= 14) {
+			localStorage.setItem("dev-name", chosenName);
+
+			alertDevName.textContent = `You've named your Dev: ${chosenName}`;
+			alertDevName.style.color = "green";
+			alertDevName.style.marginTop = "10px";
+			displayDevName.textContent = `Hi ${chosenName}`;
+
+			setTimeout(() => {
+				alertDevName.textContent = "";
+			}, 1500);
 		} else {
-			alertDevName.textContent = "Please enter a name!";
+			alertDevName.textContent = "Name must be between 4 and 12 characters!";
 			alertDevName.style.color = "red";
 			alertDevName.style.marginTop = "10px";
 

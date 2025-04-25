@@ -13,6 +13,8 @@ import {
 	sleep,
 	freeTimeActivity,
 } from "./gameActivities.js";
+
+// ALL DOM ELEMENTS SELECTORS NEEDED FOR GAME INTERFACE AND INTERACTION
 const gameContainer = document.querySelector(".game-container");
 const finalScreen = document.getElementById("finalScreen");
 const resetButton = document.getElementById("resetButton");
@@ -21,6 +23,10 @@ const gameOverMessage = document.getElementById("gameOverMessage");
 const tryAgainButton = document.getElementById("tryAgainButton");
 const congratsMessage = document.getElementById("congratsMessage");
 const actionButtons = document.querySelectorAll(".dev-activity");
+const energyBar = document.getElementById("energyFill");
+const knowledgeBar = document.getElementById("knowledgeFill");
+const motivationBar = document.getElementById("motivationFill");
+const stressBar = document.getElementById("stressFill");
 
 // AN OBJECT THAT MAPS KNOWLEDGE LEVELS TO DEVELOPER TITLES
 const developerLevel = {
@@ -54,11 +60,6 @@ let gameState = JSON.parse(localStorage.getItem("gameState")) || {
 	stress: 0,
 };
 
-const energyBar = document.getElementById("energyFill");
-const knowledgeBar = document.getElementById("knowledgeFill");
-const motivationBar = document.getElementById("motivationFill");
-const stressBar = document.getElementById("stressFill");
-
 updateStats();
 
 // THIS FUNCTION HANDLES UPDATING THE DEV'S STATS ON SCREEN AND IN STORAGE.
@@ -68,6 +69,7 @@ updateStats();
 // IF ENERGY DROPS TO 0, IT SHOWS THE GAME OVER SCREEN AND STOPS THE GAME.
 // IF KNOWLEDGE REACHES 100, YOUR DEV LEVELS UP AND KNOWLEDGE RESETS TO 0.
 function updateStats() {
+	// MAKES SURE ALL GAME STATS STAY WITHIN DEFINED RANGES
 	if (gameState.energy > 100) {
 		gameState.energy = 100;
 	}
@@ -90,6 +92,8 @@ function updateStats() {
 		gameState.stress = 0;
 	}
 
+	// UPDATE THE TEXT CONTENT OF THE STATS DISPLAY (ENERGY, KNOWLEDGE, MOTIVATION, STRESS)
+	// ENSURES THAT EACH STAT DOESN'T GO OVER THE MAX OF 100
 	document.getElementById("knowledge").textContent = Math.min(
 		gameState.knowledge,
 		100
@@ -237,34 +241,43 @@ function resetGame() {
 	updateStats();
 }
 
+//  WHEN CLICKED TOGGLES THE APP'S BACKGROUND MUSIC
+// UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON, AND TEXT OFF/ON FOR MORE CLARITY IN UI
+
 const musicToggle = document.getElementById("toggleMusic");
 const musicIcon = musicToggle.querySelector("i");
+const musicText = musicToggle.querySelector(".musicText");
 
 musicToggle.addEventListener("click", () => {
 	if (backgroundMusic.paused) {
 		backgroundMusic.play();
+		musicText.textContent = "On";
 		musicIcon.classList.remove("fa-volume-mute");
 		musicIcon.classList.add("fa-volume-up");
 	} else {
 		backgroundMusic.pause();
+		musicText.textContent = "Off";
 		musicIcon.classList.remove("fa-volume-up");
 		musicIcon.classList.add("fa-volume-mute");
 	}
 });
 
-//  WHEN CLICKED TOGGLES LOSE MUSIC ON AND OFF
-// UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON
+//  WHEN CLICKED TOGGLES WIN MUSIC ON AND OFF
+// UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON,AND TEXT OFF/ON FOR MORE CLARITY IN UI
 const winSoundToggle = document.getElementById("toggleWinSound");
 const winSoundIcon = document.getElementById("winScreenIcon");
+const winSoundText = winSoundToggle.querySelector(".musicText");
 
 if (winSoundToggle) {
 	winSoundToggle.addEventListener("click", () => {
 		if (winSound.paused) {
 			winSound.play();
+			winSoundText.textContent = "On";
 			winSoundIcon.classList.remove("fa-volume-mute");
 			winSoundIcon.classList.add("fa-volume-up");
 		} else {
 			winSound.pause();
+			winSoundText.textContent = "Off";
 			winSoundIcon.classList.remove("fa-volume-up");
 			winSoundIcon.classList.add("fa-volume-mute");
 		}
@@ -272,26 +285,30 @@ if (winSoundToggle) {
 }
 
 //  WHEN CLICKED TOGGLES LOSE MUSIC ON AND OFF
-// UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON
+// UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON, AND TEXT OFF/ON FOR MORE CLARITY IN UI
 const loseSoundToggle = document.getElementById("gameOverSoundToggle");
 const loseSoundIcon = document.getElementById("loseScreenIcon");
+const loseSoundText = loseSoundToggle.querySelector(".musicText");
 
 if (loseSoundToggle) {
 	loseSoundToggle.addEventListener("click", () => {
 		if (gameOverSound.paused) {
 			gameOverSound.play();
 			gameOverBackground.play();
+			loseSoundText.textContent = "On";
 			loseSoundIcon.classList.remove("fa-volume-mute");
 			loseSoundIcon.classList.add("fa-volume-up");
 		} else {
 			gameOverSound.pause();
 			gameOverBackground.pause();
+			loseSoundText.textContent = "Off";
 			loseSoundIcon.classList.remove("fa-volume-up");
 			loseSoundIcon.classList.add("fa-volume-mute");
 		}
 	});
 }
 
+//EVENT LISTENERS FOR BUTTONS FOR GAME ACTIONS AND CONTROLS
 document.getElementById("code").addEventListener("click", code);
 document.getElementById("study").addEventListener("click", study);
 document.getElementById("debug").addEventListener("click", debug);

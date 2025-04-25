@@ -5,6 +5,8 @@ const gameOverBackground = new Audio("./audio/gameboy-sad.wav");
 const winSound = new Audio("./audio/Fanfare_1.wav");
 const btnSound = new Audio("./audio/tamagotchi-btn.wav");
 const levelUpSound = new Audio("./audio/tama-powerup.wav");
+
+// VOLUME CONTROLS
 backgroundMusic.loop = true;
 backgroundMusic.volume = 1.0;
 levelUpSound.volume = 0.3;
