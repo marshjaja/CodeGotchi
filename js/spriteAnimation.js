@@ -6,9 +6,9 @@ context.imageSmoothingEnabled = false;
 
 // LOAD BACKGROUND AND SPRITE SHEET IMAGES FROM FILE PATHS
 const background = new Image();
-background.src = "./images/tamagotchi-pixel-purple.png";
+background.src = "./images/tamagotchi-pixel-purple.webp";
 const spriteSheet = new Image();
-spriteSheet.src = "./images/piskel-dev.png";
+spriteSheet.src = "./images/piskel-dev.webp";
 
 // DEFINE SPRITE (FRAME) SIZE, ANIMATION SPEED, TOTAL FRAMES, AND CURRENT FRAME INDEX
 const spriteWidth = 256;
