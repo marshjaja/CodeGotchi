@@ -4,16 +4,24 @@
 
 <div align="center">
 
-# ![Screenshot 2024-12-03 at 15 43 03](https://github.com/user-attachments/assets/5074d260-f9be-4d1a-8ece-be026b7b0695)  <br/> Final Submission - Web Project
+# ![Screenshot 2024-12-03 at 15 43 03](https://github.com/user-attachments/assets/5074d260-f9be-4d1a-8ece-be026b7b0695) 
+## Final Submission - Web Project
+## <img width="300" alt="Screenshot of Aquarius template landing page" src="https://github.com/user-attachments/assets/ffcc4973-2902-4e31-8002-a57b40a93059">
+<br>
+<img width="200" alt="Screenshot of Aquarius template landing page" src="https://github.com/user-attachments/assets/4e02b692-929a-43f1-8bbc-b05735cab870">
+
+<br/> 
+
+
 
 ####
  This project was created as part of my coursework at Birkbeck to develop a fully realised web project, connecting visual design with coding practice using JavaScript, HTML, and CSS, and applying concepts learned in the Visual Design and Web Project module.
 
 
- <a href="https://crispy-adventure-2n2ggk2.pages.github.io/">
- </a>
+
  
-  ## <a href="https://crispy-adventure-2n2ggk2.pages.github.io/">View Deployment Link</a>
+  ## <a href="https://crispy-adventure-2n2ggk2.pages.github.io/">View CodeGotchi on GitHub Pages</a>
+  ## <a href="https://code-gotchi.netlify.app/">View CodeGotchi on Netlify</a>
 
 ![GitHub contributors](https://img.shields.io/github/contributors/Birkbeck2/canary-web-project-marshjaja?style=for-the-badge&logoColor=white)
 <p align="center">
