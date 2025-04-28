@@ -3,6 +3,7 @@ import {
 	gameOverSound,
 	gameOverBackground,
 	winSound,
+	btnSound,
 	levelUpSound,
 } from "./audio.js";
 import {
@@ -173,7 +174,9 @@ function levelUp() {
 		"displayLevel"
 	).textContent = `Level: ${level.knowledgeLevel}, ${devTitle}`;
 
-	levelUpSound.play();
+	if (!backgroundMusic.paused) {
+		levelUpSound.play();
+	}
 	if (level.knowledgeLevel === 4) {
 		showFinalScreen();
 	}
@@ -262,6 +265,12 @@ musicToggle.addEventListener("click", () => {
 	}
 });
 
+function playButtonSound() {
+	if (!backgroundMusic.paused) {
+		btnSound.play();
+	}
+}
+
 //  WHEN CLICKED TOGGLES WIN MUSIC ON AND OFF
 // UPDATES THE ICON TO SHOW MUTE OR VOLUME ICON,AND TEXT OFF/ON FOR MORE CLARITY IN UI
 const winSoundToggle = document.getElementById("toggleWinSound");
@@ -309,12 +318,35 @@ if (loseSoundToggle) {
 }
 
 //EVENT LISTENERS FOR BUTTONS FOR GAME ACTIONS AND CONTROLS
-document.getElementById("code").addEventListener("click", code);
-document.getElementById("study").addEventListener("click", study);
-document.getElementById("debug").addEventListener("click", debug);
-document.getElementById("sleep").addEventListener("click", sleep);
-document.getElementById("break").addEventListener("click", takeBreak);
-document.getElementById("freeTime").addEventListener("click", freeTimeActivity);
+document.getElementById("code").addEventListener("click", () => {
+	playButtonSound();
+	code();
+});
+
+document.getElementById("study").addEventListener("click", () => {
+	playButtonSound();
+	study();
+});
+
+document.getElementById("debug").addEventListener("click", () => {
+	playButtonSound();
+	debug();
+});
+
+document.getElementById("sleep").addEventListener("click", () => {
+	playButtonSound();
+	sleep();
+});
+
+document.getElementById("break").addEventListener("click", () => {
+	playButtonSound();
+	takeBreak();
+});
+
+document.getElementById("freeTime").addEventListener("click", () => {
+	playButtonSound();
+	freeTimeActivity();
+});
 resetButton.addEventListener("click", resetGame);
 tryAgainButton.addEventListener("click", resetGame);
 

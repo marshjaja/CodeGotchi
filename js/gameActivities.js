@@ -5,7 +5,6 @@ import {
 	showDevMessage,
 	actionButtons,
 } from "./gameLogic.js";
-import { btnSound } from "./audio.js";
 
 // THIS FUNCTION HANDLES THE code() FUNCTION.
 // CHECKS IF THE DEV HAS ENERGY TO CODE.
@@ -19,7 +18,6 @@ import { btnSound } from "./audio.js";
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
 function code() {
 	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
 
 	if (gameState.energy > 0) {
 		gameState.energy -= 10;
@@ -40,13 +38,6 @@ function code() {
 		if (gameState.energy <= 10) {
 			showDevMessage("⚠️ I Think I am about to pass out! ;(");
 		}
-
-		// if (gameState.energy <= 0) {
-		// 	gameState.energy = 0;
-		// 	gameState.motivation -= 100;
-		// 	gameState.stress += 100;
-		// 	updateStats();
-		// }
 	}
 }
 // THIS FUNCTION HANDLES THE study() FUNCTION
@@ -58,7 +49,6 @@ function code() {
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
 function study() {
 	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
 	gameState.energy -= 5;
 	gameState.motivation += 10;
 
@@ -84,7 +74,6 @@ function study() {
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
 function debug() {
 	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
 	gameState.energy -= 5;
 	gameState.stress += 5;
 
@@ -144,7 +133,6 @@ function takeBreak() {
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
 function sleep() {
 	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
 	gameState.energy = 100;
 	gameState.stress -= 50;
 	showDevMessage("Zzz...Taking a nap... don't deploy anything without me!");
@@ -159,7 +147,7 @@ function sleep() {
 // CHECKS IF THE DEV HAS REACHED THE FINAL LEVEL BEFORE PROCEEDING.
 function freeTimeActivity() {
 	if (level.knowledgeLevel === 4) return;
-	btnSound.play();
+	// btnSound.play();
 
 	const activities = ["Networking", "Exercise", "Side project"];
 	const activity = activities[Math.floor(Math.random() * activities.length)];

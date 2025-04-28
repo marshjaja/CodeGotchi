@@ -1,3 +1,4 @@
+/* MAIN PAGE STYLES */
 :root {
 	--color-black: #000;
 	--bg-color: #fff;
@@ -32,12 +33,11 @@ form {
 canvas {
 	image-rendering: pixelated;
 }
-
+/* CODEGOTCHI PAGE STYLES */
 .game-title {
 	font-size: 40px;
 	margin-top: 20px;
 }
-
 .game-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -49,7 +49,6 @@ canvas {
 	border: 5px solid var(--color-black);
 	box-shadow: 6px 6px 0 var(--color-black) !important;
 }
-
 .left-panel {
 	position: relative;
 	display: flex;
@@ -159,7 +158,37 @@ startGameBtn {
 .dev-activity:focus {
 	transform: scale(1.03);
 }
-
+a {
+	color: var(--color-black);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--color-black);
+	text-decoration: none;
+}
+.nes-field {
+	margin: 30px 0;
+}
+.music-toggle {
+	position: absolute;
+	margin: 30px;
+	top: 60px;
+	right: 10px;
+	background: none;
+	border: none;
+	font-size: 32px;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	opacity: 1;
+	transition: transform 0.2s ease-in-out;
+	z-index: 10;
+}
+.music-toggle:hover {
+	transform: scale(1.2);
+	opacity: 0.5;
+}
+/* WIN/LOSE SCREEN STYLES */
 .final-message-screen {
 	position: fixed;
 	top: 0;
@@ -189,91 +218,8 @@ startGameBtn {
 #tryAgainButton {
 	margin: 20px;
 }
-.close-btn {
-	position: absolute;
-	margin: 20px;
-	left: 20px;
-	width: 32px;
-	height: 32px;
-	background-color: var(--color-red);
-	border: 2px dotted var(--color-black);
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.minimize-btn {
-	position: absolute;
-	margin: 20px;
-	left: 60px;
-	width: 32px;
-	height: 32px;
-	background-color: yellow;
-	border: 2px dotted var(--color-black);
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.fullscreen-btn {
-	position: absolute;
-	margin: 20px;
-	left: 100px;
-	width: 32px;
-	height: 32px;
-	background-color: var(--stats-green);
-	border: 2px dotted var(--color-black);
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.p-brackets {
-	transform: rotate(45deg) translateY(2px) translateX(2px);
-}
-.backBtn {
-	color: var(--color-black);
-	position: absolute;
-	margin: 30px;
-	right: 10px;
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 10;
-}
-a {
-	color: var(--color-black);
-	text-decoration: none;
-}
-a:hover {
-	color: var(--color-black);
-	text-decoration: none;
-}
-.nes-field {
-	margin: 30px 0;
-}
-.music-toggle {
-	position: absolute;
-	margin: 30px;
-	top: 60px;
-	right: 10px;
-	background: none;
-	border: none;
-	cursor: pointer;
-	font-size: 32px;
-	display: flex;
-	flex-direction: column;
-	padding: 10px;
-	opacity: 1;
-	transition: transform 0.2s ease-in-out;
-	z-index: 10;
-}
 
-.music-toggle:hover {
-	transform: scale(1.2);
-	opacity: 0.5;
-}
+/* START SCREEN STYLES */
 .start-screen {
 	width: 100vw;
 	height: 100vh;
@@ -298,8 +244,63 @@ a:hover {
 	flex-direction: column;
 	align-items: center;
 }
+#userInput {
+	padding: 15px;
+	box-shadow: 4px 4px 0 var(--color-black) !important;
+}
 form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+/* FAKE WINDOW TAB STYLES */
+.close-btn {
+	position: absolute;
+	margin: 20px;
+	left: 20px;
+	width: 32px;
+	height: 32px;
+	background-color: var(--color-red);
+	border: 2px dotted var(--color-black);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.minimize-btn {
+	position: absolute;
+	margin: 20px;
+	left: 60px;
+	width: 32px;
+	height: 32px;
+	background-color: yellow;
+	border: 2px dotted var(--color-black);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.fullscreen-btn {
+	position: absolute;
+	margin: 20px;
+	left: 100px;
+	width: 32px;
+	height: 32px;
+	background-color: var(--stats-green);
+	border: 2px dotted var(--color-black);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.p-brackets {
+	transform: rotate(45deg) translateY(2px) translateX(2px);
+}
+.backBtn {
+	color: var(--color-black);
+	position: absolute;
+	margin: 30px;
+	right: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
 }
