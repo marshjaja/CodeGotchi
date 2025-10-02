@@ -14,8 +14,8 @@
 
 
 ####
- This project was created as part of my coursework at Birkbeck to develop a fully realised web project, connecting visual design with coding practice using JavaScript, HTML, and CSS, and applying concepts learned in the Visual Design and Web Project module.
-
+ This project was created as part of my coursework at Birkbeck to develop a fully realised web project, connecting visual design with coding practice using JavaScript, HTML, and CSS, and applying concepts learned in the Visual Design and Web Project module. <br>
+(Featured in the [Birkbeck Digital Showcase 2025](https://birkbeck2.github.io/digital-showcase-2025/))
 
 
  
